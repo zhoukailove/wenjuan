@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @answer_record.user_id %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @answer_record.answer_id %>
+</p>
+
+<p>
+  <strong>Time cost:</strong>
+  <%= @answer_record.time_cost %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @answer_record.status %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @answer_record.state %>
+</p>
+
+<%= link_to 'Edit', edit_answer_record_path(@answer_record) %> |
+<%= link_to 'Back', answer_records_path %>

@@ -1,0 +1,42 @@
+<%= form_for(answer_record) do |f| %>
+  <% if answer_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(answer_record.errors.count, "error") %> prohibited this answer_record from being saved:</h2>
+
+      <ul>
+      <% answer_record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :answer_id %>
+    <%= f.number_field :answer_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :time_cost %>
+    <%= f.number_field :time_cost %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.check_box :status %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state %>
+    <%= f.check_box :state %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

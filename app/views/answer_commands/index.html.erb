@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Answer Commands</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Answer</th>
+      <th>Begin time</th>
+      <th>End time</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answer_commands.each do |answer_command| %>
+      <tr>
+        <td><%= answer_command.answer_id %></td>
+        <td><%= answer_command.begin_time %></td>
+        <td><%= answer_command.end_time %></td>
+        <td><%= answer_command.status %></td>
+        <td><%= link_to 'Show', answer_command %></td>
+        <td><%= link_to 'Edit', edit_answer_command_path(answer_command) %></td>
+        <td><%= link_to 'Destroy', answer_command, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Answer Command', new_answer_command_path %>

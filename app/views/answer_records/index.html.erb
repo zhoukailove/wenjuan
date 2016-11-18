@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Answer Records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Answer</th>
+      <th>Time cost</th>
+      <th>Status</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @answer_records.each do |answer_record| %>
+      <tr>
+        <td><%= answer_record.user_id %></td>
+        <td><%= answer_record.answer_id %></td>
+        <td><%= answer_record.time_cost %></td>
+        <td><%= answer_record.status %></td>
+        <td><%= answer_record.state %></td>
+        <td><%= link_to 'Show', answer_record %></td>
+        <td><%= link_to 'Edit', edit_answer_record_path(answer_record) %></td>
+        <td><%= link_to 'Destroy', answer_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Answer Record', new_answer_record_path %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @answer_command.answer_id %>
+</p>
+
+<p>
+  <strong>Begin time:</strong>
+  <%= @answer_command.begin_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @answer_command.end_time %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @answer_command.status %>
+</p>
+
+<%= link_to 'Edit', edit_answer_command_path(@answer_command) %> |
+<%= link_to 'Back', answer_commands_path %>

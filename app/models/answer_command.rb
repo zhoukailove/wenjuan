@@ -1,0 +1,2 @@
+class AnswerCommand < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+module AnswerRecordsHelper
+end

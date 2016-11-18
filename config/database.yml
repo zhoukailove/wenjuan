@@ -28,6 +28,15 @@ test:
   <<: *default
   database: untitled3_test
 
+production:
+  <<: *default
+  database: untitled3_development
+#production:
+#  <<: *default
+#  database: untitled3_production
+#  username: untitled3
+#  password: <%= ENV['UNTITLED3_DATABASE_PASSWORD'] %>
+
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -47,8 +56,4 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: untitled3_production
-  username: untitled3
-  password: <%= ENV['UNTITLED3_DATABASE_PASSWORD'] %>
+
