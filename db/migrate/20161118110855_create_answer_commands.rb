@@ -4,7 +4,7 @@ class CreateAnswerCommands < ActiveRecord::Migration[5.0]
       t.integer :answer_id
       t.datetime :begin_time
       t.datetime :end_time
-      t.boolean :status ,default:1
+      t.boolean :status ,default:true
 
       t.timestamps
     end

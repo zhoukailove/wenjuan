@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :login_name
       t.string :password
-      t.boolean :status ,default:1 # 1可以做操作；0不可操作
+      t.boolean :status ,default:true # 1可以做操作；0不可操作
 
       t.timestamps
     end
