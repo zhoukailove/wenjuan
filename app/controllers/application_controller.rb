@@ -14,7 +14,8 @@ class ApplicationController < ActionController::Base
       redirect_to active_end_path
     end
     else
-      redirect_to login_path
+      redirect_to login_path     unless (['sessions'].include? controller_name)
+
     end
   end
 
