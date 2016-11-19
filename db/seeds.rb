@@ -15,17 +15,17 @@ user = []
   name = Faker::Name.name
   login_name = "example#{n}"
   password = "111"
-  user << {name: name,
-         login_name: login_name,
-         password: password
-   }
+  user << [ name,
+          login_name,
+          password
+   ]
 end
 
 
 User.transaction do
 
   begin
-    # User.import(user)
+    User.import([:name,:login_name,:password],user)
   rescue => e
     puts "user报错信息:#{e}"
   end
