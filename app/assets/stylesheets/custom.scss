@@ -1,5 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 /* mixins, variables, etc. */
 $gray-medium-light: #eaeaea;
 @mixin box_sizing {
@@ -7,6 +8,7 @@ $gray-medium-light: #eaeaea;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 /* universal */
 body {
   padding-top: 60px;
@@ -69,7 +71,6 @@ p {
   }
 }
 
-
 /* footer */
 footer {
   margin-top: 45px;
@@ -95,6 +96,7 @@ footer {
     }
   }
 }
+
 /* miscellaneous */
 .debug_dump {
   clear: both;
@@ -105,29 +107,37 @@ footer {
 }
 
 /* sidebar */
-aside { section.user_info {
-  margin-top: 20px;
-}
-  section {
-    padding: 10px 0; margin-top: 20px; &:first-child {
-    border: 0;
-    padding-top: 0;
+aside {
+  section.user_info {
+    margin-top: 20px;
   }
-    span {
-      display: block; margin-bottom: 3px; line-height: 1;
+  section {
+    padding: 10px 0;
+    margin-top: 20px;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
     }
-    h1{
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
       font-size: 1.4em;
       text-align: left;
       letter-spacing: -1px;
       margin-bottom: 3px;
       margin-top: 0px;
-    } }
+    }
+  }
 }
+
 .gravatar {
   float: left;
   margin-right: 10px;
 }
+
 .gravatar_edit {
   margin-top: 15px;
 }
@@ -137,17 +147,48 @@ input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
-  @include box_sizing; }
+  @include box_sizing;
+}
+
 input {
   height: auto !important;
 }
+
 #error_explanation {
-  color: red; ul{
   color: red;
-  margin: 0 0 30px 0;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
 }
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
 }
-.field_with_errors { @extend .has-error; .form-control {
-  color: $state-danger-text;
+
+.checkbox {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
 }
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+/* Users index */
+.users { list-style: none; margin: 0;
+  li{
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  } }
+.bluck {
+  background: black;
 }

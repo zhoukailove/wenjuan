@@ -1,33 +1,116 @@
-<p id="notice"><%= notice %></p>
+<div class="center jumbotron">
+  <% @answer_commands.each do |answer_command| %>
+      <div class="row" data-id="<%= answer_command.id %>">
+        <div class="col-md-3 col-md-offset-1 btn btn-info disabled">
+          问题<%= answer_command.answer_id %>
+        </div>
+        <% if answer_command.begin_time %>
+            <div class="begin_time col-md-3 col-md-offset-1 btn btn-success disabled">
+              开始时间:<%= answer_command.begin_time.localtime.strftime "%Y-%m-%d %H:%M:%S" %>
+            </div>
+        <% else %>
+            <div class="begin_time col-md-3 col-md-offset-1 btn btn-warning">
+              开始答题
+            </div>
+        <% end %>
+        <% if !answer_command.end_time && answer_command.begin_time %>
+            <div class="end_time col-md-3 col-md-offset-1 btn btn-warning">
+              结束答题
+            </div>
+        <% else %>
+            <div class="end_time col-md-3 col-md-offset-1 btn btn-warning disabled">
+              <% if answer_command.end_time %>
+                  结束时间:<%= answer_command.end_time.localtime.strftime "%Y-%m-%d %H:%M:%S" %>
+              <% else %>
+                  结束答题
+              <% end %>
+            </div>
+        <% end %>
+      </div>
+      <br/>
 
-<h1>Answer Commands</h1>
+  <% end %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Answer</th>
-      <th>Begin time</th>
-      <th>End time</th>
-      <th>Status</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="info_all btn btn-primary btn-lg">初始化</div>
+<script>
+  $('.info_all').click(function(){
+      $.ajax({
+          type: 'post',
+          url: '<%= info_all_path %>',
+          success: function (data) {
+              alert('完成');
+              location.reload();
 
-  <tbody>
-    <% @answer_commands.each do |answer_command| %>
-      <tr>
-        <td><%= answer_command.answer_id %></td>
-        <td><%= answer_command.begin_time %></td>
-        <td><%= answer_command.end_time %></td>
-        <td><%= answer_command.status %></td>
-        <td><%= link_to 'Show', answer_command %></td>
-        <td><%= link_to 'Edit', edit_answer_command_path(answer_command) %></td>
-        <td><%= link_to 'Destroy', answer_command, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          },
+          error: function (e) {
+              console.log(e);
+              console.log('update_command_time_path error');
+          }
+      });
+  });
 
-<br>
+    $('.begin_time').on('click', function () {
+        var end_time_disabled = $(this).parent('.row').children('.end_time').eq(0).hasClass('disabled');
 
-<%= link_to 'New Answer Command', new_answer_command_path %>
+        var disabled = $(this).hasClass('disabled');
+        if (disabled) {
+            if (end_time_disabled) {
+                alert('本题已经结束');
+            } else {
+                alert('已经开始');
+            }
+        } else {
+
+            var answer_command_id = $(this).parent('.row').data('id');
+            var tt = $(this);
+            update_command_time(answer_command_id, 'begin_time', tt)
+        }
+    });
+
+    $('.end_time').on('click', function () {
+        var disabled = $(this).hasClass('disabled');
+        if (disabled) {
+            var begin_time_disabled = $(this).parent('.row').children('.begin_time').eq(0).hasClass('disabled');
+            if (begin_time_disabled) {
+                alert('本题已经结束');
+            } else {
+                alert('请先开始本题');
+            }
+        } else {
+            var answer_command_id = $(this).parent('.row').data('id');
+            var tt = $(this);
+            update_command_time(answer_command_id, 'end_time', tt)
+        }
+    });
+    function update_command_time(id, column_type, tt) {
+        var data = {
+            id: id,
+            column_type: column_type
+        };
+        $.ajax({
+            type: 'post',
+            url: '<%= update_command_time_path %>',
+            data: data,
+            success: function (data) {
+                if (data.data == 200) {
+                    tt.addClass('disabled');
+                    if (column_type == 'begin_time') {
+                        tt.html('开始时间:'+data.time);
+                        tt.next('.end_time').removeClass('disabled')
+                    }else{
+                        tt.html('结束时间:'+data.time);
+                    }
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (e) {
+                console.log(e);
+                console.log('update_command_time_path error');
+            }
+        });
+    }
+
+
+</script>

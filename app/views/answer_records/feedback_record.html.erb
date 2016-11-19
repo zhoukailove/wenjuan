@@ -1,0 +1,40 @@
+<div class="center jumbotron table table-responsive">
+  <table class="table table-striped table-hover table-bordered">
+    <thead>
+    <tr class="info">
+      有反馈用户列表
+    </tr>
+    <tr class="info">
+      <th>用户编号</th>
+      <th>用时</th>
+      <th>结果</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @answer_records.each do |answer_record| %>
+        <tr>
+              <td><%= answer_record.user.name %></td>
+              <td><%= answer_record.time_cost %>秒</td>
+              <td><%= answer_record.status==1 ? '正确' : '错误' %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table><table class="table table-striped table-hover table-bordered">
+    <thead>
+    <tr class="info">
+      无反馈用户列表
+    </tr>
+    <tr class="info">
+      <th>用户编号</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @answer_recordss.each do |answer_record| %>
+        <tr>
+          <td>answer_record.user.name</td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+

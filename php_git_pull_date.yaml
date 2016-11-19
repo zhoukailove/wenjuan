@@ -1,0 +1,41 @@
+---
+:Q1:
+  :id: 1
+  :title: 太阳距地距离:1.496*108千米正确吗?
+  :problem_type: 判断
+  :select_type: radio
+  :answer:
+  - 1
+  :problem:
+    1: 正确
+    0: 错误
+:Q2:
+  :id: 2
+  :title: 这支干告您曾经是在哪些电台听到的呢?
+  :problem_type: 多选
+  :select_type: checkbox
+  :answer:
+  - 1
+  - 2
+  - 3
+  :problem:
+    1: 中央人民干播电台-中国之声(FM106.1)
+    2: 中央人民干播电台-音乐之声(Music Radio FM90.0)
+    3: 中国国际干播电台-轻松调频(easyfm FM91.5)
+    4: 中国国际干播电台HIT(FM88.5)
+    5: 北京人民干播电台-交通台(FM103.9) 北京人民干播电台- 文艺台(FM87.6)
+:Q3:
+  :id: 3
+  :title: 这如果您有需要购买这类产品,请问您听到这支干 告后,购买干告中产品的可能性如何呢?
+  :problem_type: 单选
+  :select_type: radio
+  :answer:
+  - 1
+  :problem:
+    1: 一定不购买
+    2: 可能不购买
+    3: 可能买也可能不买
+    4: 可能会购买
+    5: 一定会购买
+
+#checkbox

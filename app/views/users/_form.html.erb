@@ -1,37 +1,24 @@
-<%= form_for(user) do |f| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%#= form_for(@user) do |f| %>
+    <%= form_for(@user, url: signup_path) do |f| %>
+        <%= render 'shared/error_messages' %>
+
+        <%= f.label :name %>
+        <%= f.text_field :name , class: 'form-control' %>
+        <%= f.label :login_name %>
+        <%= f.text_field :login_name , class: 'form-control'%>
+        <%= f.label :password %>
+        <%= f.text_field :password , class: 'form-control'%>
+
+        <%= f.submit "Create my account", class: "btn btn-primary" %>
+    <% end %>
+    <% if @user.id %>
+    <div class="gravatar_edit">
+      <%= gravatar_for @user %>
+      <a href="http://gravatar.com/emails" target="_blank">change</a>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+        <% end %>
   </div>
-
-  <div class="field">
-    <%= f.label :login_name %>
-    <%= f.text_field :login_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.text_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :status %>
-    <%= f.check_box :status %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

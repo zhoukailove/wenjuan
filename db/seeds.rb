@@ -5,3 +5,44 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create!(name:  "周凯",
+             login_name: "zk",
+             password:              "111"
+             )
+user = []
+99.times do |n|
+  name = Faker::Name.name
+  login_name = "example#{n}"
+  password = "111"
+  user << {name: name,
+         login_name: login_name,
+         password: password
+   }
+end
+
+
+User.transaction do
+
+  begin
+    # User.import(user)
+  rescue => e
+    puts "user报错信息:#{e}"
+  end
+end
+
+
+@a = YAML.load_file('php_git_pull_date.yaml')
+new_grade = []
+@a.each do |key,val|
+  new_grade << [val[:id]]
+end
+
+AnswerCommand.transaction do
+  AnswerCommand.delete_all
+puts new_grade
+  begin
+    AnswerCommand.import([:answer_id],new_grade) if new_grade
+  rescue => e
+    raise "AnswerCommand in rescue  error is:#{e}"
+  end
+end

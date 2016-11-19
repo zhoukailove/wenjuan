@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :correct_user  , only: [:show, :new, :destroy, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-    debugger
-    @users = User.all
+    @users = User.paginate(page: params[:page])
+
   end
 
   # GET /users/1
@@ -29,9 +31,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:success] = "Welcome to the Sample App!"
+        log_in @user
+        flash[:success] = 'Welcome to the Sample App!'
         format.html { redirect_to @user
-        # , notice: 'User was successfully created.'
+          # , notice: 'User was successfully created.'
         }
         format.json { render :show, status: :created, location: @user }
       else
@@ -65,14 +68,20 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:name, :login_name, :password, :status)
-    end
+  private
+
+
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:name, :login_name, :password, :status)
+  end
+
+
 end

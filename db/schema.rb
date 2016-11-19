@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 20161118121658) do
   create_table "answer_records", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "answer_id"
-    t.integer  "time_cost"
-    t.boolean  "status",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.decimal  "time_cost",  precision: 6, scale: 2
+    t.integer  "status",                             default: 0
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
   end
 
   create_table "microposts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
