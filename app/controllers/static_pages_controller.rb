@@ -10,6 +10,7 @@ class StaticPagesController < ApplicationController
       unless answer_records.pluck(:id).present?
 
         msg = get_answer 0
+        logger.info msg
         if (msg[0])
           @answer = msg[1]
           @modal = msg[2]
@@ -144,7 +145,7 @@ class StaticPagesController < ApplicationController
     result = false
     modal = 0
     ty = false
-    answer_command = AnswerCommand.where('status = ?', 1)
+    answer_command = AnswerCommand.where('status = ?', true)
     result = if answer_command.present?
                answer_id += 1
                if answer_command.first.answer_id <= answer_id

@@ -7,8 +7,10 @@ class ApplicationController < ActionController::Base
 
   def ipad
     agent_str = request.user_agent.to_s.downcase
+    logger.info agent_str
     if current_user
-    if agent_str =~ /pad/ || (['answer_commands','answer_records'].include? controller_name) || ((['static_pages'].include? controller_name) && (['help'].include? action_name))
+    if agent_str =~ /pad/ || (['answer_commands','answer_records'].include? controller_name) ||
+        ((['static_pages'].include? controller_name) && (['help'].include? action_name))
       return true
     else
       redirect_to active_end_path

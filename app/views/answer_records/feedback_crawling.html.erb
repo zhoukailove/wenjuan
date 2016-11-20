@@ -18,13 +18,14 @@
       <th>平均用时</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody><% unless @answer_records.empty?   %>
     <% @answer_records.each_with_index do |answer_record, index| %>
         <tr>
           <td>第<%= index+1 %>名</td>
-          <td><%= answer_record.user.name %></td>
+          <td><%= answer_record.try(:user).try(:name) %></td>
           <td><%= answer_record.time_costs %>秒</td>
         </tr>
+    <% end %>
     <% end %>
     </tbody>
   </table>
