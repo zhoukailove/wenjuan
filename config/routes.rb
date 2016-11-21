@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'sessions/new'
 
+  get '/answer_show', to: 'answer_records#answer_show' ,as:'answer_show'
   get '/feedback_crawling', to: 'answer_records#feedback_crawling' ,as:'feedback_crawling'
   get '/feedback_record/:id', to: 'answer_records#feedback_record' ,as:'feedback_record'
   post '/info_all' , to: 'answer_commands#info_all'

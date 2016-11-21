@@ -1,0 +1,27 @@
+<div class="center jumbotron table table-responsive">
+  <table class="table table-striped table-hover table-bordered">
+    <thead>
+    <tr>
+      <% if @answer_id == 0 %>
+      <% else %>
+      问题<%= @answer_id %>反馈详情
+      <% end %>
+    </tr>
+    <tr class="info">
+      <th>反馈人数</th>
+      <th>正确率</th>
+      <th>错误率</th>
+      <th>未反馈人数</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+              <td><%= @record_all_rate.to_f*100 %>%</td>
+              <td><%= @correct_rate.to_f*100 %>%</td>
+              <td><%= @failing_rate.to_f*100 %>%</td>
+              <td><%= @record_false_rate.to_f*100 %>%</td>
+        </tr>
+    </tbody>
+  </table>
+</div>
+

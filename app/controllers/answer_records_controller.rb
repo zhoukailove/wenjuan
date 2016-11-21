@@ -63,6 +63,30 @@ class AnswerRecordsController < ApplicationController
   def show
   end
 
+  def answer_show
+    answer_command = AnswerCommand.where('status = ?',false).last
+    @correct_rate = 0.0
+    @failing_rate = 0.0
+    @record_all_rate = 0.0
+    @record_false_rate = 0.0
+    @answer_id = 0
+    if answer_command.present?
+      answer_id = answer_command.answer_id
+      @answer_id = answer_id
+      @answer_record = AnswerRecord.where('answer_id = ?',answer_id)
+      @record_false = @answer_record.where('status = ?',0).count
+      @record_true = @answer_record.where('status = ?',1).count
+      count = User.count
+      @record_all = @record_false + @record_true
+      @record_all_rate = (sprintf("%.2f",@record_all.to_f/count)) # 反馈人数率
+      @record = count - @record_all
+      @record_false_rate = (sprintf("%.2f",@record.to_f/count)) # 未反馈人数率
+
+      @correct_rate =  (sprintf("%.2f",@record_true.to_f/count)) #正确率
+      @failing_rate =  (sprintf("%.2f",@record_false.to_f/count))#错误率
+    end
+  end
+
   # GET /answer_records/new
   def new
     @answer_record = AnswerRecord.new
