@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get '/answer_show', to: 'answer_records#answer_show' ,as:'answer_show'
   get '/feedback_crawling', to: 'answer_records#feedback_crawling' ,as:'feedback_crawling'
+  get '/user_table', to: 'answer_records#user_table' ,as:'user_table'
   get '/feedback_record/:id', to: 'answer_records#feedback_record' ,as:'feedback_record'
   post '/info_all' , to: 'answer_commands#info_all'
   post '/update_command_time' , to: 'answer_commands#update_command_time'

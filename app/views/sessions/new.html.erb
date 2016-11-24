@@ -1,14 +1,83 @@
-<h1>登录</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_path) do |f| %>
-        <%= f.label '登录名' %>
-        <%= f.text_field :login_name, class: 'form-control' %>
-        <%= f.label '登录密码' %>
-        <%= f.text_field :password, class: 'form-control' %>
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+  <title>网易邮箱</title>
+  <style type="text/css">
+    /* css reset */
+    body{color:#000;font-size:12px;line-height:166.6%;text-align:center;}
+    body,input,select,button{font-family:helvetica,arial,sans-serif}
+    h1,h2,h3,select,input,button{font-size:100%}
+    body,h1,h2,h3,ul,li,form,p,img{margin:0;padding:0;border:0}
+    input,button,select,img{margin:0;line-height:normal}
+    select{padding:1px}
+    ul{list-style:none}
+    select,input,button,button img,label{vertical-align:middle}
+    header,footer,section,aside,nav,hgroup,figure,figcaption{display:block;margin:0;padding:0;border:none}
+    header{width:100%;height:55px;overflow:hidden;position:absolute;top:40%;margin:-55px auto 0;;z-index:2;}
+    header h1{width:252px;height:55px;overflow:hidden;position:relative;background:url(<%=asset_path('163logo.png')  %>) top center no-repeat;margin:0 auto;background-size:252px 55px;text-indent:-9999px;}
+    a{text-decoration:none;color:#848585}
+    a:hover{color:#fff}
+    .fontWeight{font-weight:700;}
+    /* global */
+    html,body{width:100%;height:100%;overflow:hidden;}
+    body{position:relative;}
+    .motionBg{width:100%;height:100%;overflow:hidden;background-size:100% 100%;background-position:center center;position:absolute;visibility:hidden;background-color:#000;z-index:0;
+      -webkit-transition:-webkit-transform .8s ease-out}
+    .motionMask{-webkit-transition:opacity .5s ease-out;width:100%;height:100%;overflow:hidden;z-index:1;background:#9ea9ca;opacity:1;position:absolute;}
 
-        <%= f.submit "登录", class: "btn btn-primary" %>
-    <% end %>
-    <!--<p>New user? <%#= link_to "Sign up now!", signup_path %></p>-->
-</div>
-</div>
+    footer{height:55px;border-top:1px dashed rgba(255, 255, 255 , 0.3);position:absolute;bottom:0;width:100%;overflow:hidden;z-index:2;line-height:55px;font-size:14px;color:#fff;text-shadow:0px 0px 5px rgba(0, 0, 0, 0.8);background:rgba(0, 0, 0, .1);opacity:0.8}
+
+    .login{width:633px;position:absolute;height:66px;overflow:visible;top:40%;left:50%;margin-left:-317px;margin-top:48px;z-index:3;}
+    .ipt{width:249px;height:38px;overflow:hidden;position:absolute;top:0;left:0px;background:rgba(0, 0, 0, .6);color:#abb5c1;border:1px solid #fff;border-radius:4px;}
+    .ipt-focus{border-color:#006ad6;box-shadow:0px 0px 10px rgba(0, 106, 214, .6);-webkit-box-shadow:0px 0px 10px rgba(0, 106, 214, .6);background:rgba(0, 0, 0, .8);}
+    .ipt-pw{left:266px;}
+    .ipt-input{width:233px;height:22px;overflow:hidden;line-height:22px;font-size:16px;margin:8px 0 0 8px;border:0;outline:0;color:#abb5c1;padding:0;background:none;display:block;-webkit-appearance:none;z-index:2;}
+    .ipt-domain{position:absolute;height:22px;line-height:22px;font-size:16px;font-weight:700;color:#a5adb7;top:8px;left:8px;z-index:1;display:none;pointer-events:none}
+    .ipt-usernameWidth{position:absolute;z-index:0;visibility:hidden;}
+    .ipt-submit{position:absolute;right:0;top:0;border:1px solid #003d67;height:40px;line-height:40px;padding:0;text-align:center;width:100px;border-radius:4px;font-size:16px;color:#fff;text-shadow:0px 1px 1px rgba(0, 0, 0, .8);font-weight:700;-webkit-appearance:none;display:block;-webkit-tap-highlight-color:rgba(0, 0, 0, 0)}
+    .ipt-submit{background: rgb(25,111,198);
+      background: -moz-linear-gradient(top,  rgba(25,111,198,1) 0%, rgba(19,90,164,1) 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(25,111,198,1)), color-stop(100%,rgba(19,90,164,1)));
+      background: -webkit-linear-gradient(top,  rgba(25,111,198,1) 0%,rgba(19,90,164,1) 100%);
+      background: -o-linear-gradient(top,  rgba(25,111,198,1) 0%,rgba(19,90,164,1) 100%);
+      background: -ms-linear-gradient(top,  rgba(25,111,198,1) 0%,rgba(19,90,164,1) 100%);
+      background: linear-gradient(to bottom,  rgba(25,111,198,1) 0%,rgba(19,90,164,1) 100%);
+    }
+
+
+
+    /* 加入邮箱大师广告 */
+    header{margin-top:-95px}
+    .login{margin-top:8px}
+  </style>
+</head>
+<body>
+<div id="motionbg" class="motionBg" style="width: 2028.5px; height: 1331.2px; background-image: url('<%=asset_path('126bg.jpg')  %>'); transform: translate3d(-630.248px, -153.6px, 0px); visibility: visible;"></div>
+<div id="motionMask" class="motionMask" style="opacity: 0;"></div>
+<header>
+  <h1>问卷系统登录</h1>
+</header>
+
+<section class="login">
+  <%= form_for(:session, url: login_path) do |f| %>
+      <div class="ipt" id="iptUsername">
+        <div id="usernameWidth" class="ipt-usernameWidth"></div>
+        <%= f.text_field :login_name, class: 'ipt-input' ,required:"required" ,placeholder:"帐号" %>
+      </div>
+      <div class="ipt ipt-pw" id="iptPassword">
+        <%= f.text_field :password, class: 'ipt-input', required:"required" ,placeholder:"密码"%>
+      </div>
+      <input class="ipt-submit" id="iptSubmit" type="submit" value="登 录">
+  <% end %>
+</section>
+
+
+
+<!-- 大师弹窗推广 End -->
+
+
+
+
+
+
+</body></html>

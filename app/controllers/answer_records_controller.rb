@@ -40,6 +40,16 @@ class AnswerRecordsController < ApplicationController
     end
   end
 
+  def user_table
+    @answer_id = AnswerCommand.where('status = ?',false).last.try(:answer_id)
+    if @answer_id
+      @answer_records = AnswerRecord.where('answer_id = ?',@answer_id).pluck(:user_id,:status)
+      else
+    end
+    @answer_records ||= []
+
+  end
+
   def feedback_crawling
     @limit = params[:limit] ? params[:limit] : 6
     count_number = AnswerCommand.where('status = ?' ,false).count
