@@ -156,11 +156,13 @@
                     url: '<%= post_answer_path %>',
                     data: data,
                     success: function (data) {
-                        if (data.data == 200) {
-                            location.reload();
-                        } else {
-                            console.info(data.msg);
-                        }
+                        location.reload();
+
+//                        if (data.data == 200) {
+//                            location.reload();
+//                        } else {
+//                            console.info(data.msg);
+//                        }
                     },
                     error: function (e) {
                         console.log(e);

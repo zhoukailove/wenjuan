@@ -1,6 +1,33 @@
 class AnswerRecordsController < ApplicationController
   before_action :set_answer_record, only: [:show, :edit, :update, :destroy]
 
+
+  def record_detail
+    answer_record_db = AnswerRecord
+    answer_id = params[:answer_id]
+    # answer_id = 3
+    answer_records = answer_record_db.where('answer_id = ?',answer_id )
+    if answer_records.present?
+      count = answer_records.count
+      correct = answer_records.where('status = ?',1).count
+      failing = answer_records.where('status = ?',0).count
+      status_true = failing + correct
+      status_false = count - status_true
+      dat = {
+          status: true,
+          answer_id: answer_id,
+          status_true:(count>0 &&  status_true>0) ? (sprintf("%.4f",status_true.to_f/count)) : 0.00,
+          status_false: (count>0 &&  status_false>0) ? (sprintf("%.4f",status_false.to_f/count)) : 0.00,
+          correct:correct,
+          correct_robability: (count>0 &&  correct>0) ? (sprintf("%.4f",correct.to_f/count)) : 0.00,
+          failing:failing,
+          failing_robability:(count>0 &&  failing>0) ? (sprintf("%.4f",failing.to_f/count)): 0.00,
+      }
+    else
+      dat = { answer_id: answer_id,status: false}
+    end
+    @result = [dat]
+  end
   # GET /answer_records
   # GET /answer_records.json
   def index
@@ -40,13 +67,40 @@ class AnswerRecordsController < ApplicationController
     end
   end
 
-  def user_table
-    @answer_id = AnswerCommand.where('status = ?',false).last.try(:answer_id)
+  def get_answer_record
+    @answer_id = AnswerCommand.where('status = ? and answer_id = ?',false,params[:answer_id]).last.try(:answer_id)
     if @answer_id
-      @answer_records = AnswerRecord.where('answer_id = ?',@answer_id).pluck(:user_id,:status)
+      record_answer_ids = cookies["record_answer_ids_#@answer_id"].present? ? JSON.parse(cookies["record_answer_ids_#@answer_id"]) : false
+      answer_records = AnswerRecord.where('answer_id = ?',@answer_id)
+      if record_answer_ids
+        @answer_records = answer_records.where('id not in (?)',record_answer_ids)
+        if @answer_records.present?
+          @answer_record_ids = @answer_records.pluck(:id)
+          cookies["record_answer_ids_#@answer_id"] = (record_answer_ids+@answer_record_ids).to_json
+          @answer_records = @answer_records.pluck(:user_id,:status)
+        end
       else
+        @answer_records = answer_records
+        if @answer_records.present?
+          @answer_record_ids = @answer_records.pluck(:id)
+          cookies["record_answer_ids_#@answer_id"] = (@answer_record_ids).to_json
+          @answer_records = @answer_records.pluck(:user_id,:status)
+        end
+      end
+    else
     end
     @answer_records ||= []
+    info = {data: @answer_records}
+    respond_to do |format|
+      format.json do
+        render json: info.to_json
+      end
+    end
+  end
+
+  def user_table
+    # cookies["record_answer_ids_#{params[:answer_id]}"] = nil
+    cookies.delete ("record_answer_ids_#{params[:answer_id]}")
 
   end
 

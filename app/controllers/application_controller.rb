@@ -3,6 +3,15 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   before_action :ipad
 
+  def admin
+    if (['answer_commands', 'answer_records', 'rooms'].include? controller_name) && current_user && current_user.id != User.last.id
+      redirect_to login_path
+    end
+  end
+
+  def admin?
+    return  current_user || current_user.id != User.last.id ? false : true
+  end
 
 
   def ipad
@@ -38,10 +47,10 @@ class ApplicationController < ActionController::Base
   def strong
     render html: '<strong>strong</strong>'
   end
+
   def body_raw
     render body: 'raw'
   end
-
 
 
   private
@@ -53,6 +62,7 @@ class ApplicationController < ActionController::Base
       redirect_to(root_url)
     end
   end
+
   # 确保用户已登录
   def logged_in_user
     unless logged_in?

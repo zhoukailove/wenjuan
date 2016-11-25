@@ -21,6 +21,8 @@
               <td><%= answer_record[:status_false] %></td>
               <td>
                 <div class="btn btn-warning btn-sm"><%= link_to '查看',feedback_record_path(answer_record[:answer_id]), target: "_blank", rel: "nofollow" %></div>
+                <div class="btn btn-warning btn-sm"><%= link_to '位置详情',user_table_path(answer_record[:answer_id]), target: "_blank", rel: "nofollow" %></div>
+                <div class="btn btn-warning btn-sm"><%= link_to '查看概率',record_detail_path(answer_record[:answer_id]), target: "_blank", rel: "nofollow" %></div>
               </td>
           <% else %>
               <td>问题<%= answer_record[:answer_id] %>：未开始</td>

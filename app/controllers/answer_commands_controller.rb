@@ -35,11 +35,29 @@ class AnswerCommandsController < ApplicationController
     id = params[:id]
     data = 500
     times = 0
-    if(id && @answer_command = AnswerCommand.find(id))
-      if(!@answer_command.try(params[:column_type]))
+    if id && @answer_command = AnswerCommand.find(id)
+      if !@answer_command.try(params[:column_type])
         time = Time.now
         times = time.strftime "%Y-%m-%d %H:%M:%S"
-        date = params[:column_type] == 'end_time' ?{params[:column_type].to_sym => time, status:false} :{params[:column_type].to_sym => time};
+        date = if params[:column_type] == 'end_time'
+                 answer_id = @answer_command.answer_id
+                 user_ids = AnswerRecord.where('answer_id = ? ',answer_id ).pluck(:user_id)
+                 last_id = User.last.id
+                 if user_ids
+                   user_ids += [last_id]
+                 else
+                   user_ids = [last_id]
+                 end
+                 user_idss = User.where('id not in (?)',user_ids).pluck(:id)
+                 user = []
+                 user_idss.each do |user_id|
+                   user << [answer_id,user_id,0.0,2]
+                 end
+                 AnswerRecord.import([:answer_id,:user_id,:time_cost,:status],user) if user.present?
+                 {params[:column_type].to_sym => time, status:false}
+        else
+          {params[:column_type].to_sym => time}
+        end
         if @answer_command.update(date)
           data = 200
           msg = '更新完成'

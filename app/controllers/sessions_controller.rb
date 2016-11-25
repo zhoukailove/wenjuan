@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
       log_in @user
       remember @user
       # redirect_to @user
-      redirect_to root_path
+      redirect_to   @user == User.last ? answer_commands_path : root_path
+
     else
       flash[:danger] = 'Invalid email/password combination' # 不完全正确
       render 'new'

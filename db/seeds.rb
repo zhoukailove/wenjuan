@@ -6,12 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.delete_all
-User.create!(name:  "周凯",
-             login_name: "zk",
-             password:              "111"
-             )
+
 user = []
-99.times do |n|
+80.times do |n|
   name = Faker::Name.name
   login_name = "example#{n}"
   password = "111"
@@ -30,6 +27,11 @@ User.transaction do
     puts "user报错信息:#{e}"
   end
 end
+
+User.create!(name:  "周凯",
+             login_name: "zk",
+             password:              "111"
+)
 
 
 @a = YAML.load_file('php_git_pull_date.yaml')

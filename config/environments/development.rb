@@ -6,6 +6,11 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # config.action_cable.url = '/cable'
+  # config.action_cable.allowed_request_origins = [ 'http://192.168.31.71:3000',
+  #                                                 'http://0.0.0.0:3000',
+  #                                                 'http://127.0.0.1:3000',
+  #                                                 'http://localhost:3000' ]
   # Do not eager load code on boot.
   config.eager_load = false
 

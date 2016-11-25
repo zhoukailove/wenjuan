@@ -33,6 +33,10 @@
 </div>
 
 <div class="info_all btn btn-primary btn-lg">初始化</div>
+
+<div class=" btn btn-success btn-lg">
+  <%=link_to  '答题统计',answer_records_path,target: '_blank'  %>
+</div>
 <script>
   $('.info_all').click(function(){
       $.ajax({
