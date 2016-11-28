@@ -3,41 +3,17 @@
     <div class="col-md-1"></div>
     <div class="col-md-4">
       <div class="btn-group">
-        <div type="button" class="btn btn-default" id="user_1"></div>
-        <div type="button" class="btn btn-default" id="user_2"></div>
-        <div type="button" class="btn btn-default" id="user_3"></div>
-        <div type="button" class="btn btn-default" id="user_4"></div>
-        <div type="button" class="btn btn-default" id="user_5"></div>
-        <div type="button" class="btn btn-default" id="user_6"></div>
-        <div type="button" class="btn btn-default" id="user_7"></div>
-        <div type="button" class="btn btn-default" id="user_8"></div>
-        <div type="button" class="btn btn-default" id="user_9"></div>
-        <div type="button" class="btn btn-default" id="user_10"></div>
-        <div type="button" class="btn btn-default" id="user_11"></div>
-        <div type="button" class="btn btn-default" id="user_12"></div>
-        <div type="button" class="btn btn-default" id="user_13"></div>
-        <div type="button" class="btn btn-default" id="user_14"></div>
-        <div type="button" class="btn btn-default" id="user_15"></div>
+        <% @user.limit(15).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
       </div>
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-4">
       <div class="btn-group ">
-        <div type="button" class="btn btn-default" id="user_16"></div>
-        <div type="button" class="btn btn-default" id="user_17"></div>
-        <div type="button" class="btn btn-default" id="user_18"></div>
-        <div type="button" class="btn btn-default" id="user_19"></div>
-        <div type="button" class="btn btn-default" id="user_20"></div>
-        <div type="button" class="btn btn-default" id="user_21"></div>
-        <div type="button" class="btn btn-default" id="user_22"></div>
-        <div type="button" class="btn btn-default" id="user_23"></div>
-        <div type="button" class="btn btn-default" id="user_24"></div>
-        <div type="button" class="btn btn-default" id="user_25"></div>
-        <div type="button" class="btn btn-default" id="user_26"></div>
-        <div type="button" class="btn btn-default" id="user_27"></div>
-        <div type="button" class="btn btn-default" id="user_28"></div>
-        <div type="button" class="btn btn-default" id="user_29"></div>
-        <div type="button" class="btn btn-default" id="user_30"></div>
+        <% @user.offset(15).limit(15).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -45,37 +21,18 @@
     <div class="col-md-1"></div>
     <div class="col-md-4">
       <div class="btn-group" >
-        <div type="button" class="btn btn-default" id="user_31"></div>
-        <div type="button" class="btn btn-default" id="user_32"></div>
-        <div type="button" class="btn btn-default" id="user_33"></div>
-        <div type="button" class="btn btn-default" id="user_34"></div>
-        <div type="button" class="btn btn-default" id="user_35"></div>
-        <div type="button" class="btn btn-default" id="user_36"></div>
-        <div type="button" class="btn btn-default" id="user_37"></div>
-        <div type="button" class="btn btn-default" id="user_38"></div>
-        <div type="button" class="btn btn-default" id="user_39"></div>
-        <div type="button" class="btn btn-default" id="user_40"></div>
-        <div type="button" class="btn btn-default" id="user_41"></div>
-        <div type="button" class="btn btn-default" id="user_42"></div>
-        <div type="button" class="btn btn-default" id="user_43"></div>
+        <% @user.offset(30).limit(13).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
+
       </div>
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-4">
       <div class="btn-group">
-        <div type="button" class="btn btn-default" id="user_44"></div>
-        <div type="button" class="btn btn-default" id="user_45"></div>
-        <div type="button" class="btn btn-default" id="user_46"></div>
-        <div type="button" class="btn btn-default" id="user_47"></div>
-        <div type="button" class="btn btn-default" id="user_48"></div>
-        <div type="button" class="btn btn-default" id="user_49"></div>
-        <div type="button" class="btn btn-default" id="user_50"></div>
-        <div type="button" class="btn btn-default" id="user_51"></div>
-        <div type="button" class="btn btn-default" id="user_52"></div>
-        <div type="button" class="btn btn-default" id="user_53"></div>
-        <div type="button" class="btn btn-default" id="user_54"></div>
-        <div type="button" class="btn btn-default" id="user_55"></div>
-        <div type="button" class="btn btn-default" id="user_56"></div>
+        <% @user.offset(43).limit(13).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -83,35 +40,17 @@
     <div class="col-md-1"></div>
     <div class="col-md-4">
       <div class="btn-group " >
-        <div type="button" class="btn btn-default" id="user_57"></div>
-        <div type="button" class="btn btn-default" id="user_58"></div>
-        <div type="button" class="btn btn-default" id="user_59"></div>
-        <div type="button" class="btn btn-default" id="user_60"></div>
-        <div type="button" class="btn btn-default" id="user_61"></div>
-        <div type="button" class="btn btn-default" id="user_62"></div>
-        <div type="button" class="btn btn-default" id="user_63"></div>
-        <div type="button" class="btn btn-default" id="user_64"></div>
-        <div type="button" class="btn btn-default" id="user_65"></div>
-        <div type="button" class="btn btn-default" id="user_66"></div>
-        <div type="button" class="btn btn-default" id="user_67"></div>
-        <div type="button" class="btn btn-default" id="user_68"></div>
+        <% @user.offset(56).limit(12).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
       </div>
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-4">
       <div class="btn-group">
-        <div type="button" class="btn btn-default" id="user_69"></div>
-        <div type="button" class="btn btn-default" id="user_70"></div>
-        <div type="button" class="btn btn-default" id="user_71"></div>
-        <div type="button" class="btn btn-default" id="user_72"></div>
-        <div type="button" class="btn btn-default" id="user_73"></div>
-        <div type="button" class="btn btn-default" id="user_74"></div>
-        <div type="button" class="btn btn-default" id="user_75"></div>
-        <div type="button" class="btn btn-default" id="user_76"></div>
-        <div type="button" class="btn btn-default" id="user_77"></div>
-        <div type="button" class="btn btn-default" id="user_78"></div>
-        <div type="button" class="btn btn-default" id="user_79"></div>
-        <div type="button" class="btn btn-default" id="user_80"></div>
+        <% @user.offset(68).limit(12).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -120,24 +59,27 @@
 <%= content_for :script do %>
     <script>
         get_answer_record();
-        var iCount = setInterval(get_answer_record, 2000);
-        iCount();
+//        var iCount = setInterval(get_answer_record, 2000);
+//        iCount();
         //id为cOk绑定点击事件
-        $("#cOk").click(function (e) {
-            clearInterval(iCount);
-        });
-//        setInterval(get_answer_record, 2000);
+//        $("#cOk").click(function (e) {
+//            clearInterval(iCount);
+//        });
+        setInterval(get_answer_record, 2000);
 
 
 //        setInterval(get_answer_record, 2000);
         function get_answer_record() {
             $.ajax({
                 type: 'post',
-                url: '<%= get_answer_record_path %>',
-                data: {answer_id:<%= params[:answer_id] %>},
+                url: '<%= get_answer_records_path %>',
+//                data: {answer_id:<%= params[:answer_id] %>},
                 async: false,
                 success: function (data) {
                     console.info(data);
+                    if(data.state){
+                       $('.btn-group').find('div.btn').removeClass('btn-default').removeClass('btn-danger').removeClass('btn-success').addClass('btn-default');
+                    }
                     $.each( data.data, function(i, item){
                         var user_id = item[0];
                         var status = item[1];
@@ -183,7 +125,7 @@
 
         .btn {
             min-height: 30px;
-            min-width: 20px;
+            min-width: 32px;
         }
 
         .row {
