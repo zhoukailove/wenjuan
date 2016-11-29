@@ -1,0 +1,22 @@
+<div class="center jumbotron table table-responsive">
+  <table class="table">
+    <thead>
+    <tr class="active h1">
+      <th>正确率</th>
+      <th>错误率</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @result.each do |answer_record| %>
+        <tr >
+          <% if answer_record[:status] %>
+              <td class="h1 info"><%= answer_record[:status_true].to_f*100 %>%</td>
+              <td class="h1 warning"><%= answer_record[:status_false].to_f*100 %>%</td>
+          <% else %>
+              <td class="h1">答题未开始</td>
+          <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

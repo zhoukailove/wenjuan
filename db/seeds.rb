@@ -9,8 +9,8 @@ User.delete_all
 
 user = []
 80.times do |n|
-  name = Faker::Name.name
-  login_name = "example#{n}"
+  name = "#{n+1}"
+  login_name = "#{n+1}"
   password = "111"
   user << [ name,
           login_name,
@@ -30,21 +30,23 @@ end
 
 User.create!(name:  "周凯",
              login_name: "zk",
-             password:              "111"
+             password:  "111"
 )
 
 
 @a = YAML.load_file('php_git_pull_date.yaml')
 new_grade = []
 @a.each do |key,val|
-  new_grade << [val[:id]]
+  val.each do |k,v|
+    new_grade << [v[:id],key.to_s]
+  end
 end
 
 AnswerCommand.transaction do
   AnswerCommand.delete_all
 puts new_grade
   begin
-    AnswerCommand.import([:answer_id],new_grade) if new_grade
+    AnswerCommand.import([:answer_id,:pid],new_grade) if new_grade
   rescue => e
     raise "AnswerCommand in rescue  error is:#{e}"
   end

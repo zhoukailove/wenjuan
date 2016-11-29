@@ -1,41 +1,712 @@
 ---
-:Q1:
-  :id: 1
-  :title: 太阳距地距离:1.496*108千米正确吗?
-  :problem_type: 判断
-  :select_type: radio
-  :answer:
-  - 1
-  :problem:
-    1: 正确
-    0: 错误
-:Q2:
-  :id: 2
-  :title: 这支干告您曾经是在哪些电台听到的呢?
-  :problem_type: 多选
-  :select_type: checkbox
-  :answer:
-  - 1
-  - 2
-  - 3
-  :problem:
-    1: 中央人民干播电台-中国之声(FM106.1)
-    2: 中央人民干播电台-音乐之声(Music Radio FM90.0)
-    3: 中国国际干播电台-轻松调频(easyfm FM91.5)
-    4: 中国国际干播电台HIT(FM88.5)
-    5: 北京人民干播电台-交通台(FM103.9) 北京人民干播电台- 文艺台(FM87.6)
-:Q3:
-  :id: 3
-  :title: 这如果您有需要购买这类产品,请问您听到这支干 告后,购买干告中产品的可能性如何呢?
-  :problem_type: 单选
-  :select_type: radio
-  :answer:
-  - 1
-  :problem:
-    1: 一定不购买
-    2: 可能不购买
-    3: 可能买也可能不买
-    4: 可能会购买
-    5: 一定会购买
-
-#checkbox
+1:
+  :Q1:
+    :id: 1
+    :title: 我国的“国家宪法日”是哪一天?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 6月24日
+      1: 12月24日
+  :Q2:
+    :id: 2
+    :title: 代表法进行过几次修正?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 三次
+      1: 五次
+  :Q3:
+    :id: 3
+    :title: 人大代表视察时，能不能直接处理问题?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 能
+      1: 不能
+  :Q4:
+    :id: 4
+    :title: 宪法规定，由哪些机关行使国家立法权?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 全国人民代表大会及其常务委员会
+      1: 省级人民代表大会及其常务委员会
+  :Q5:
+    :id: 5
+    :title: 十八届四中全会《决定》提出，治国之重器是什么?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 法律
+      1: 党的领导
+  :Q6:
+    :id: 6
+    :title: 十八届四中全会《决定》指出，法院一审重在解决什么问题?
+    :problem_type: 多选
+    :select_type: checkbox
+    :answer:
+    - 0
+    - 1
+    :problem:
+      0: 事实认定
+      1: 法律适用
+  :Q7:
+    :id: 7
+    :title: 建设中国特色社会主义法治体系，需要发挥立法的什么作用?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 规范和指导作用
+      1: 引领和推动作用
+  :Q8:
+    :id: 8
+    :title: 凡立法涉及重大体制和重大政策调整的，必须报党中央讨论决定。是否正确?
+    :problem_type: 判断
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 正确
+      1: 错误
+  :Q9:
+    :id: 9
+    :title: 哪一级人大代表有权依照宪法规定的程序提出修改宪法的议案?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 省、自治区、直辖市人民代表大会代表
+      1: 全国人民代表大会代表  （全国人大代表）
+  :Q10:
+    :id: 10
+    :title: 地方性法规的备案、审查和撤销，依据哪部法律的有关规定办理?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 2
+    :problem:
+      0: 宪法
+      1: 监督法
+      2: 立法法
+2:
+  :Q1:
+    :id: 11
+    :title: 选举法共修正过多少次?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 6次
+      1: 7次
+      2: 8次
+  :Q2:
+    :id: 12
+    :title: 选民名单应在选举日之前多少天公布?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 选举日的10日之前
+      1: 选举日的20日之前
+      2: 选举日的30日之前
+  :Q3:
+    :id: 13
+    :title: 对选举法最新的修正在哪一年?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 2014年
+      1: 2015年
+  :Q4:
+    :id: 14
+    :title: 宪法规定，公民的什么权利同时也是公民的义务?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 劳动和受教育
+      1: 养育与赡养
+  :Q5:
+    :id: 15
+    :title: 对于破坏选举的行为可以追究哪两类法律责任?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 行政责任和民事责任
+      1: 行政责任和刑事责任
+  :Q6:
+    :id: 16
+    :title: 中华人民共和国公民有（）自由?
+    :problem_type: 多选
+    :select_type: checkbox
+    :answer:
+    - 0
+    - 1
+    - 3
+    :problem:
+      0: 言论
+      1: 结社
+      2: 迁徙
+      3: 宗教信仰
+  :Q7:
+    :id: 17
+    :title: 选民在直接选举人大代表时，如何获得选票?
+    :problem_type: 多选
+    :select_type: checkbox
+    :answer:
+    - 0
+    - 1
+    :problem:
+      0: 身份证选
+      1: 选民证
+      1: 工作证
+  :Q8:
+    :id: 18
+    :title: 十八届四中全会《决定》提出善治之前提是什么?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 良法
+      1: 德治
+  :Q9:
+    :id: 19
+    :title: 各级人民代表大会常务委员会按照什么原则行使职权?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 民主集中制的原则
+      1: 委员长负责制的原则
+  :Q10:
+    :id: 20
+    :title: 人大常委会会议由主任召集，每一个月至少举行一次。是否正确?
+    :problem_type: 判断
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 正确
+      1: 错误
+3:
+  :Q1:
+    :id: 21
+    :title: 民族乡是否属于民族区域自治地方?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 属于
+      1: 不属于
+  :Q2:
+    :id: 22
+    :title: 县级人大代表名额的基数是多少?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 120名
+      1: 150名
+  :Q3:
+    :id: 23
+    :title: 人民解放军选举代表适用选举法吗?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 适用
+      1: 不适用
+  :Q4:
+    :id: 24
+    :title: 根据选民的要求，由谁组织代表候选人与选民见面?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 2
+    :problem:
+      0: 居民委员会
+      1: 村民委员会
+      1: 选举委员会
+  :Q5:
+    :id: 25
+    :title: 法律制定和修改的重大问题由谁向党中央报告?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 全国人大常委会党组
+      1: 全国人大常委会法制工作委员会
+  :Q6:
+    :id: 26
+    :title: 乡镇人民代表大会闭会期间的活动由谁来组织?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 县人大常委会
+      1: 乡镇人大主席团
+  :Q7:
+    :id: 27
+    :title: 十八届四中全会《决定》提出，法律的权威源自人民的什么?
+    :problem_type: 多选
+    :select_type: checkbox
+    :answer:
+    - 0
+    - 1
+    :problem:
+      0: 内心拥护
+      1: 真诚信仰
+  :Q8:
+    :id: 28
+    :title: 代表选举过程应当公开透明，因此选举时没有秘密写票处，是否正确?
+    :problem_type: 判断
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 正确
+      1: 错误
+  :Q9:
+    :id: 29
+    :title: 十八届四中全会《决定》要求，探索建立由什么机关提起公益诉讼制度?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 司法机关
+      1: 检察机关
+  :Q10:
+    :id: 30
+    :title: 地方各级人民代表大会进行选举和通过决议，以全体代表的多少通过?
+    :problem_type: 判断
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 过半数
+      1: 三分之一
+4:
+  :Q1:
+    :id: 31
+    :title: 坚持依法执政首先要坚持什么?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 依宪执政
+      1: 民主集中
+  :Q2:
+    :id: 32
+    :title: 人民代表大会代表是什么机关的组成人员?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 国家行政机关
+      1: 国家权力机关
+  :Q3:
+    :id: 33
+    :title: 宪法规定谁有权发布特赦令?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 军委主席
+      1: 国家主席
+  :Q4:
+    :id: 34
+    :title: 罢免县级人大代表，须经原选区多少选民联名?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 50人以上
+      1: 30人以上
+  :Q5:
+    :id: 35
+    :title: 乡、民族乡、镇的建置和区域划分由谁来决定?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 国务院
+      1: 省、直辖市的人民政府
+  :Q6:
+    :id: 36
+    :title: 十八届四中全会《决定》提出把什么纳入政绩考核指标体系?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 民主制度落实
+      1: 法治建设成效
+  :Q7:
+    :id: 37
+    :title: 选举法经过多少次修正，都是由全国人大常委会修正的。是否正确?
+    :problem_type: 判断
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 正确
+      1: 错误
+  :Q8:
+    :id: 38
+    :title: 地方各级人大代表的名额，是不是每年均需本级人大常委会确定?
+    :problem_type: 判断
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 是
+      1: 不是
+  :Q9:
+    :id: 39
+    :title: 十八届四中全会《决定》，关于推进法治专门队伍的()?
+    :problem_type: 多选
+    :select_type: checkbox
+    :answer:
+    - 0
+    - 1
+    - 2
+    :problem:
+      0: 专业化
+      1: 正规化
+      2: 职业化
+      3: 规范化
+  :Q10:
+    :id: 40
+    :title: 县级以上地方各级人民代表大会在选举上一级人大代表时由谁主持?
+    :problem_type: 判断
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 本级人民代表大会主席团
+      1: 上一级人民代表大会主席团
+5:
+  :Q1:
+    :id: 41
+    :title: 我国的基层群众自治组织有哪些?
+    :problem_type: 多选
+    :select_type: checkbox
+    :answer:
+    - 1
+    - 2
+    :problem:
+      0: 社区
+      1: 居民委员会
+      1: 村民委员会
+  :Q2:
+    :id: 42
+    :title: 全国人民代表大会代表每届任期几年?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 4年
+      1: 5年
+  :Q3:
+    :id: 43
+    :title: 太原市小店区人大代表的选举，由谁主持?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 区选举委员会
+      1: 市选举委员会
+  :Q4:
+    :id: 44
+    :title: 罢免乡级的人大代表，由原选区多少选民联名?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 三十人以上
+      1: 二十人以上
+  :Q5:
+    :id: 45
+    :title: 乡镇人民代表大会有没有常务委员会?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 有
+      1: 没有
+  :Q6:
+    :id: 46
+    :title: “对代表的监督”是监督法还是代表法所规范的内容?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 监督法
+      1: 代表法
+  :Q7:
+    :id: 47
+    :title: 十八届四中全会《决定》中提出依法赋予谁行使地方立法权?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 直辖市
+      1: 设区的市
+  :Q8:
+    :id: 48
+    :title: 精神病人无需任何机构确认，一律没有选举权。是否正确?
+    :problem_type: 判断
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 正确
+      1: 错误
+  :Q9:
+    :id: 49
+    :title: 经过多少代表提议，可以临时召集本级人民代表大会会议?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 五分之一以上
+      1: 六分之一以上
+  :Q10:
+    :id: 50
+    :title: 全面推进依法治国的总目标是什么?
+    :problem_type: 多选
+    :select_type: checkbox
+    :answer:
+    - 0
+    - 1
+    :problem:
+      0: 建设中国特色社会主义法制体系
+      1: 建设社会主义法治国家
+6:
+  :Q1:
+    :id: 51
+    :title: 县乡两级人大代表受谁的监督?
+    :problem_type: 多选
+    :select_type: checkbox
+    :answer:
+    - 0
+    :problem:
+      0: 原选区选民
+      1: 上一级人大常委员会
+  :Q2:
+    :id: 52
+    :title: 人大代表应当代表谁的利益和意志?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 国家
+      1: 人民
+  :Q3:
+    :id: 53
+    :title: 我国的根本政治制度是什么?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 社会主义制度
+      1: 人民代表大会制度
+  :Q4:
+    :id: 54
+    :title: 省、自治区、直辖市的代表名额基数为多少?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 350名
+      1: 365名
+  :Q5:
+    :id: 55
+    :title: 人大代表在闭会期间活动的基本形式是什么?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 代表团活动
+      1: 代表小组活动
+  :Q6:
+    :id: 56
+    :title: 罢免县、乡两级的人大代表，须经原选区多少选民通过?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    :problem:
+      0: 过半数
+      1: 全体选民
+  :Q7:
+    :id: 57
+    :title: 县级以上的地方各级人民代表大会举行会议时，由谁主持会议?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 执行主席
+      1: 主席团
+  :Q8:
+    :id: 58
+    :title: 选举委员会的组成人员为代表候选人的，可以不辞去选举委员会的职务。是否正确?
+    :problem_type: 判断
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 正确
+      1: 错误
+  :Q9:
+    :id: 59
+    :title: 省、自治区人民政府在必要的时候，经谁批准，可以设立若干派出机关?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 全国人民代表大会
+      1: 国务院
+  :Q10:
+    :id: 60
+    :title: 山西省人民代表大会闭会期间，什么机构可以补选山西省出席全国人民代表大会的代表?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    :problem:
+      0: 设区的市人大常委会
+      1: 山西省人大常委会
+7:
+  :Q1:
+    :id: 61
+    :title: 下列哪些是人大代表享有的权利?
+    :problem_type: 多选
+    :select_type: checkbox
+    :answer:
+    - 0
+    - 2
+    - 3
+    :problem:
+      0: 依法联名提出议案、质询案、罢免案
+      1: 积极参加统一组织的视察、专题调研
+      2: 参加本级人民代表大会的选举和表决
+      3: 参加审议各项议案、报告和其他议题
+  :Q2:
+    :id: 62
+    :title: 下列哪些是人大代表应当履行的义务?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    - 1
+    - 3
+    :problem:
+      0: 按时出席本级人民代表大会会议
+      1: 听取和反映原选区选民的意见和要求
+      2: 依法联名提出议案、质询案、罢免案
+      3: 积极参加统一组织的视察、专题调研
+  :Q3:
+    :id: 63
+    :title: 十八届四中全会《决定》指出，加强市场法律制度建设，编纂民法典、制定和完善发展规划、（   ）、（   ）、（   ）、农业、财政税收、金融等方面法律法规，促进商品和要素自由流动、公平交易、平等使用。
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 1
+    - 2
+    - 3
+    :problem:
+      0: 金融投资
+      1: 投资管理
+      2: 土地管理
+      3: 能源和矿产资源
+  :Q4:
+    :id: 64
+    :title: 图中体现了十八届四中全会关于立法工作的什么精神和要求?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    - 1
+    - 3
+    :problem:
+      0: 科学立法
+      1: 民主立法
+      2: 推进立法精细化
+      3: 建立基层立法联系点
+  :Q5:
+    :id: 65
+    :title: 县级以上的地方各级人民代表大会行使下列哪些职权?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    - 1
+    - 2
+    - 3
+    :problem:
+      0: 在本行政区域内，保证宪法、法律、行政法规和上级人民代表大会及其常务委员会决议的遵守和执行，保证国家计划和国家预算的执行
+      1: 讨论、决定本行政区域内的政治、经济、教育、科学、文化、卫生、环境和资源保护、民政、民族等工作的重大事项
+      2: 撤销本级人民政府的不适当的决定和命令
+      3: 保障少数民族的权利
+  :Q6:
+    :id: 66
+    :title: 县级以上的地方各级人民代表大会常委会行使下列哪些职权?
+    :problem_type: 单选
+    :select_type: radio
+    :answer:
+    - 0
+    - 1
+    - 3
+    :problem:
+      0: 讨论、决定本行政区域内的政治、经济、教育、科学、文化、卫生、环境和资源保护、民政、民族等工作的重大事项
+      1: 撤销本级人民政府的不适当的决定和命令
+      2: 保障少数民族的权利
+      3: 决定授予地方的荣誉称号

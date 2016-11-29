@@ -6,14 +6,29 @@ class AnswerCommandsController < ApplicationController
   def index
     # @a = YAML.load_file('php_git_pull_date.yaml')
     # logger.info "#@a"
-    @answer_commands = AnswerCommand.all
+    @answer_commands = AnswerCommand.where('pid = ?',7)
+  end
+
+  def two_index
+    # @a = YAML.load_file('php_git_pull_date.yaml')
+    # logger.info "#@a"
+    @answer_commands = {}
+    answer_commands = AnswerCommand.where('pid < ?',7).order(:pid, :answer_id)
+    answer_commands.each do |answer_command|
+      @answer_commands[answer_command.pid] = if @answer_commands[answer_command.pid]
+                                              @answer_commands[answer_command.pid] + [answer_command]
+                                            else
+                                              [answer_command]
+                                            end
+    end
+
   end
 
   def info_all
-    AnswerCommand.all.update_all(end_time: nil,status:true,begin_time:nil)
+    AnswerCommand.all.update_all(end_time: nil, status: true, begin_time: nil)
     AnswerRecord.delete_all
-    User.all.update_all(status:true)
-    info = {data:true}
+    User.all.update_all(status: true)
+    info = {data: true}
     respond_to do |format|
       format.json do
         render json: info.to_json
@@ -41,23 +56,23 @@ class AnswerCommandsController < ApplicationController
         times = time.strftime "%Y-%m-%d %H:%M:%S"
         date = if params[:column_type] == 'end_time'
                  answer_id = @answer_command.answer_id
-                 user_ids = AnswerRecord.where('answer_id = ? ',answer_id ).pluck(:user_id)
+                 user_ids = AnswerRecord.where('answer_id = ? ', answer_id).pluck(:user_id)
                  last_id = User.last.id
                  if user_ids
                    user_ids += [last_id]
                  else
                    user_ids = [last_id]
                  end
-                 user_idss = User.where('id not in (?)',user_ids).pluck(:id)
+                 user_idss = User.where('id not in (?)', user_ids).pluck(:id)
                  user = []
                  user_idss.each do |user_id|
-                   user << [answer_id,user_id,0.0,2]
+                   user << [answer_id, user_id, 0.0, 2]
                  end
-                 AnswerRecord.import([:answer_id,:user_id,:time_cost,:status],user) if user.present?
-                 {params[:column_type].to_sym => time, status:false}
-        else
-          {params[:column_type].to_sym => time}
-        end
+                 AnswerRecord.import([:answer_id, :user_id, :time_cost, :status], user) if user.present?
+                 {params[:column_type].to_sym => time, status: false}
+               else
+                 {params[:column_type].to_sym => time}
+               end
         if @answer_command.update(date)
           data = 200
           msg = '更新完成'
@@ -70,7 +85,56 @@ class AnswerCommandsController < ApplicationController
     else
       msg = '未找到对应问题'
     end
-    info = {data: data, msg: msg,time:times}
+    info = {data: data, msg: msg, time: times}
+    respond_to do |format|
+      format.json do
+        render json: info.to_json
+      end
+    end
+  end
+def update_command_times
+    pid = params[:pid]
+    data = 500
+    times = 0
+    if pid && @answer_command = AnswerCommand.where('pid = ?',pid)
+      if !@answer_command[0].try(params[:column_type])
+        time = Time.now
+        times = time.strftime "%Y-%m-%d %H:%M:%S"
+        date = if params[:column_type] == 'end_time'
+                 answer_ids = @answer_command.pluck(:answer_id)
+                 answer_ids.each do |answer_id|
+                   user_ids = AnswerRecord.where('answer_id = ? ', answer_id).pluck(:user_id)
+                   last_id = User.last.id
+                   if user_ids
+                     user_ids += [last_id]
+                   else
+                     user_ids = [last_id]
+                   end
+                   user_idss = User.where('id not in (?)', user_ids).pluck(:id)
+                   user = []
+                   user_idss.each do |user_id|
+                     user << [answer_id, user_id, 0.0, 2]
+                   end
+                   AnswerRecord.import([:answer_id, :user_id, :time_cost, :status], user) if user.present?
+                 end
+
+                 {params[:column_type].to_sym => time, status: false}
+               else
+                 {params[:column_type].to_sym => time}
+               end
+        if @answer_command.update_all(date)
+          data = 200
+          msg = '更新完成'
+        else
+          msg = '更新失败'
+        end
+      else
+        msg = '不可重复点击'
+      end
+    else
+      msg = '未找到对应问题'
+    end
+    info = {data: data, msg: msg, time: times}
     respond_to do |format|
       format.json do
         render json: info.to_json
@@ -129,10 +193,10 @@ class AnswerCommandsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_answer_command
-      @answer_command = AnswerCommand.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_answer_command
+    @answer_command = AnswerCommand.find(params[:id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_command_params

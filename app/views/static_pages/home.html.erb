@@ -2,7 +2,7 @@
 
 
 <div class="center jumbotron">
-  <div class="col-sm-10">Q<%= @answer[:id] %>：<%= @answer[:title] %>(<%= @answer[:problem_type] %>)</div>
+  <div class="col-sm-10 h2"><%= @answer[:sort] %>：<%= @answer[:title] %></div>
 
   <form class="form-horizontal" role="form">
     <div class="form-group" data-time="begin_time"
@@ -14,9 +14,11 @@
       <% @answer[:problem].each do |key, text| %>
 
           <div class=" col-sm-8">
-            <div class="<%= @answer[:select_type] %>">
+            <!--<div class="<%#= @answer[:select_type] %>">-->
+            <div class="checkbox">
               <div class="col-sm-4 col-sm-offset-2 text-right">
-                <input type="<%= @answer[:select_type] %>" name="options<%= @answer[:select_type] %>" value="<%= key %>">
+                <!--<input type="<%#= @answer[:select_type] %>" name="options<%#= @answer[:select_type] %>" value="<%#= key %>">-->
+                <input type="checkbox" name="optionscheckbox" value="<%= key %>">
               </div>
               <div class="col-sm-6 text-left"><%= text %></div>
             </div>
@@ -32,9 +34,9 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">等待开始答题</h4>
+            <h2 class="modal-title h2" id="myModalLabel">等待开始答题</h2>
           </div>
-          <div class="modal-body">
+          <div class="modal-body h3 ">
             等待开始答题......
           </div>
           <div class="modal-footer">
@@ -59,15 +61,15 @@
 
         function get_val(ty) {
             var id = [];
-            if (ty == 'checkbox') {
+//            if (ty == 'checkbox') {
                 $("input[type=checkbox]").each(function () {
                     if (this.checked) {
                         id.push($(this).val());
                     }
                 });
-            } else {
-                id = [$('input:radio:checked').val()];
-            }
+//            } else {
+//                id = [$('input:radio:checked').val()];
+//            }
             return id;
         }
         $("input[type=radio]").change(function () {

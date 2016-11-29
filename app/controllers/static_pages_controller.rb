@@ -65,7 +65,8 @@ class StaticPagesController < ApplicationController
     timess = 0
     begin_time = 0
     # if current_user && current_user.status && id && @answer_record = AnswerRecord.where('answer_id = ? and user_id = ?',id,current_user.id)
-    if current_user && id && @answer_record = AnswerRecord.where('answer_id = ? and user_id = ?', id, current_user.id)
+    if current_user && id
+      @answer_record = AnswerRecord.where('answer_id = ? and user_id = ?', id, current_user.id)
       unless @answer_record.try(:first)
         time = Time.now
         times = time.strftime "%Y-%m-%d %H:%M:%S"
@@ -86,7 +87,7 @@ class StaticPagesController < ApplicationController
               ty = AnswerRecord.create(answer_id: id, user_id: current_user.id, time_cost: timess, status: status)
               data = 200 if ty
             else
-              current_user.update(status: 0)
+              # current_user.update(status: 0)
               # AnswerRecord.create(answer_id:id,user_id:current_user.id,time_cost:0.0,status:2)
               msg = '答题结束'
             end
@@ -171,7 +172,16 @@ class StaticPagesController < ApplicationController
                if File::exists?(file_path)
                  answer = YAML.load_file(file_path)
                  if answer
-                   result = answer["Q#{answer_id}".to_sym]
+                   pid = AnswerCommand.where('answer_id = ?',answer_id).first.pid
+                   answer = answer[pid]
+                   answer.each do |k,val|
+                     # logger.info "  ===#{val.to_json}@@@"
+
+                     if val[:id] == answer_id
+                       val[:sort] = k
+                       result = val
+                     end
+                   end
                    if result
                      answer_command = AnswerCommand.find_by_answer_id(answer_id)
                      if answer_command.begin_time
@@ -197,6 +207,8 @@ class StaticPagesController < ApplicationController
   end
 
 
+
+
   def get_answers answer_id
     # answer_id = 0
     result = false
@@ -210,7 +222,15 @@ class StaticPagesController < ApplicationController
                  if File::exists?(file_path)
                    answer = YAML.load_file(file_path)
                    if answer
-                     result = answer["Q#{answer_id}".to_sym]
+                     pid = answer_command.first.pid
+                     answer = answer[pid]
+                     answer.each do |k,val|
+                       if val[:id] == answer_id
+                         val[:sort] = k
+                         result = val
+                       end
+                     end
+
                      # result = answer[:Q1]
                      if result
                        answer_command = AnswerCommand.find_by_answer_id(answer_id)

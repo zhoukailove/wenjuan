@@ -29,6 +29,30 @@ class AnswerRecordsController < ApplicationController
     @result = [dat]
   end
 
+
+  def record_details
+    answer_record_db = AnswerRecord
+    answer_command_db = AnswerCommand
+    pid = params[:pid]
+    answer_ids = answer_command_db.where('pid = ?', pid).pluck(:answer_id)
+    answer_records = answer_record_db.where('answer_id in (?)', answer_ids)
+    if answer_records.present?
+      count = answer_records.count
+      correct = answer_records.where('status = ?', 1).count
+      failing = answer_records.where('status = ?', 0).count
+      status_true = failing + correct
+      dat = {
+          status: true,
+          status_true: (correct > 0 && status_true>0) ? (sprintf("%.4f", correct.to_f/status_true)) : 0.00,
+          status_false: (failing>0 && status_true>0) ? (sprintf("%.4f", failing.to_f/status_true)) : 0.00,
+      }
+
+    else
+      dat = { status: false}
+    end
+    @result = [dat]
+  end
+
   # GET /answer_records
   # GET /answer_records.json
   def index
