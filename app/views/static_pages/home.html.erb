@@ -1,37 +1,133 @@
-<% provide(:title, "Home") %>
+<% provide(:title, "Home") %>center jumbotron
+<% left = 6.6
+   height = 300
+%>
+<!--<div style="width: 900px;height:400px;background-color: #eeeeee">-->
+<div style="width: 900px;height:400px;background-color: black ; padding-top:1%">
+  <div class="row"   style="margin: 0px;">
+
+    <div class="avatar col-md-2">
+      <div class="avatar_desc thumbnail" >
+        <img src="/images/126bg.jpg" class="img-responsive" style="min-width: 170px;height: 210px;"  alt=""/>
+        <div class="caption" style="padding:0px">
+          <span class="text-center" style="display: block;font-size: 150%;">Thumbnail</span>
+          <div style="border-bottom: 2px solid #e52233;"></div>
+          <span class="text-center" style="display: block;font-size: 150%;">Thumbnail</span>
+        </div>
+        <!--<div class="user_name">123123</div>-->
+      </div>
+    </div>
+    <div class="avatar col-md-2">
+      <div class="avatar_desc thumbnail" >
+        <img src="/images/126bg.jpg" class="img-responsive" style="min-width: 170px;height: 210px;"  alt=""/>
+        <div class="caption" style="padding:0px">
+          <span class="text-center" style="display: block;font-size: 150%;">Thumbnail</span>
+          <div style="border-bottom: 2px solid #e52233;"></div>
+          <span class="text-center" style="display: block;font-size: 150%;">Thumbnail</span>
+        </div>
+        <!--<div class="user_name">123123</div>-->
+      </div>
+    </div>
+    <div class="avatar col-md-2">
+      <div class="avatar_desc thumbnail" >
+        <img src="/images/126bg.jpg" class="img-responsive" style="min-width: 170px;height: 210px;"  alt=""/>
+        <div class="caption" style="padding:0px">
+          <span class="text-center" style="display: block;font-size: 150%;">Thumbnail</span>
+          <div style="border-bottom: 2px solid #e52233;"></div>
+          <span class="text-center" style="display: block;font-size: 150%;">Thumbnail</span>
+        </div>
+        <!--<div class="user_name">123123</div>-->
+      </div>
+    </div>
+
+    <div class="avatar col-md-2">
+    <div class="avatar_desc thumbnail" >
+      <img src="/images/126bg.jpg" class="img-responsive" style="min-width: 170px;height: 210px;"  alt=""/>
+      <div class="caption" style="padding:0px">
+        <span class="text-center" style="display: block;font-size: 150%;">Thumbnail</span>
+        <div style="border-bottom: 2px solid #e52233;"></div>
+        <span class="text-center" style="display: block;font-size: 150%;">Thumbnail</span>
+      </div>
+      <!--<div class="user_name">123123</div>-->
+    </div>
+  </div>
 
 
-<div class="center jumbotron">
+
+    <!--<div class="avatar col-md-3">-->
+      <!--<div class="avatar_desc thumbnail" style="background-color: #006ad6">-->
+        <!--<div class="avatar_image">-->
+          <!--<img src="/images/126bg.jpg" style="width: 150px; height: 180px;" alt=""/>-->
+          <!--<div class="caption" style="padding:0px">-->
+            <!--<span style="display: block ;font-size: 150%;border-bottom: 1px solid #e5e5e5">Thumbnail label</span>-->
+            <!--<span class="user_fen" style="display: block ;font-size: 150%;bottom:0px">12</span>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="user_name">123123</div>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+  </div>
+  <span class="fen text-center">
+    111</span>
+</div>
+
+<div class="center jumbotron" style="display: none;">
   <div class="col-sm-12 h2 center"></div>
   <% (1..5).each do |i| %>
-      <div class="form-group row col-sm-offset-1" >
-      <% (((i-1)*5+1)..(i*5)).each do |j| %>
-            <div class="col-sm-1 btn btn-primary col-sm-offset-1 text-center data_fen" data-fen="<%= j %>"> <%= j %>分</div>
-      <% end %>
+      <div class="form-group row col-sm-offset-1">
+        <% (((i-1)*5+1)..(i*5)).each do |j| %>
+            <div class="col-sm-1 btn btn-primary col-sm-offset-1 text-center data_fen" data-fen="<%= j %>"> <%= j %>分
+            </div>
+        <% end %>
       </div>
   <% end %>
   <button type="button" id="myButton" data-loading-text="提交..." class="btn btn-primary btn-lg disabled" autocomplete="off">确认</button>
 </div>
+<style>
+  .avatar{
+    height: 260px
+  }
+  .fen{
+    line-height:110%;
+    background-color: rebeccapurple;
+    display: block ;
+    color:white;
+    font-size: 350%;
+    margin-top: 2%;
+  }
+
+  .col-md-2{
+    width: 23%;
+    margin-left:1%;
+    margin-right:1%;
+    padding: 10px 10px 0px 10px;
+    background-color: #006ad6;
+    height: 75%;
+  }
+</style>
 <script>
   var f;
-  function addheadermsg(header,content) {
+  function addheadermsg(header, content) {
     $('#myModalLabel span').text(header);
     $('.modal-body span').text(content);
   }
   $(function () {
-    $('body').delegate('.data_fen','click',function () {
+    $('body').delegate('.data_fen', 'click', function () {
       var fen = $(this).data('fen');
 //      console.info(fen);
       $('.data_fen').removeClass('disabled');
 
-      if(!$(this).hasClass('disabled')){
+      if (!$(this).hasClass('disabled')) {
         $(this).addClass('disabled');
-        if(fen){
+        if (fen) {
           f = fen;
           disable_button(fen);
-        }else{
+        } else {
           f = '';
-        };
+        }
+        ;
       }
       console.info(f);
     });
@@ -41,7 +137,7 @@
     $modal = $('#myModal');
 //    if($("#select_type").data('modal')=='0'){
 //      $modal.modal({show: true, backdrop: 'static', keyboard: false});
-      $modal.modal({ show: false,backdrop: 'static', keyboard: false});
+    $modal.modal({show: false, backdrop: 'static', keyboard: false});
 //    }
 
     function disable_button(id) {
@@ -55,32 +151,33 @@
         }
       }
     }
+
     $("#myButton").click(function () {
       if ($('#myButton').hasClass('disabled')) {
         alert('请选择答案再提交');
       } else {
-        if(f){
+        if (f) {
           $modal.modal('show');
-          addheadermsg('提交分数',f+'分');
-          var s = {fen: f,user_id: 12,control_id: 2};//为用户评分记录post数据
+          addheadermsg('提交分数', f + '分');
+          var s = {fen: f, user_id: 12, control_id: 2};//为用户评分记录post数据
           /*
-          结束轮询方法，
-          成功后刷新页面
-          * 失败后走失败逻辑
-          * */
-          if('如果未开始'){
-            addheadermsg('','等待开始');
-          }else if('评分已经结束'){
-            addheadermsg('','评分结束');
+           结束轮询方法，
+           成功后刷新页面
+           * 失败后走失败逻辑
+           * */
+          if ('如果未开始') {
+            addheadermsg('', '等待开始');
+          } else if ('评分已经结束') {
+            addheadermsg('', '评分结束');
           }
 
-        }else{
+        } else {
           alert('请选择答案再提交');
         }
-      };
+      }
+      ;
     });
   });
-
 
 
 </script>
@@ -95,7 +192,7 @@
           <div class="modal-body h1 center ">
             <span class="label" style="font-size: 150%;"> </span>
           </div>
-          <div class="modal-footer" style="border-top: 0px">
+          <div class="modal-footer">
             <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
             <!--<button type="button" class="btn btn-primary">Save changes</button>-->
           </div>
