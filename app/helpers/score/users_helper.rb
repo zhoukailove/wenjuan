@@ -1,0 +1,2 @@
+module Score::UsersHelper
+end

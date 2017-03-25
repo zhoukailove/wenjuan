@@ -12,9 +12,13 @@ gem 'coffee-rails', '4.2.1'
 gem 'jquery-rails', '4.1.1'
 gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.4.1'
+gem 'simple_form'
 # gem 'mysql2'
 gem 'activerecord-import'
 gem 'therubyracer'
+
+gem 'paperclip', '~> 5.1'
+
 # gem 'useragent'
 gem 'ya2yaml' # rails 读写yml文件(中文utf-8问题)
 gem 'mysql2', '>= 0.3.18', '< 0.5'

@@ -1,0 +1,2 @@
+module Score::ControlCentersHelper
+end

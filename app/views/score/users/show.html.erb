@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @score_user.name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @score_user.status %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @score_user.state %>
+</p>
+
+<%= image_tag @score_user.avatar.url %>
+<%= image_tag @score_user.avatar.url(:medium) %>
+<%= image_tag @score_user.avatar.url(:thumb) %>
+
+<%= link_to 'Edit', edit_score_user_path(@score_user) %> |
+<%= link_to 'Back', score_users_path %>

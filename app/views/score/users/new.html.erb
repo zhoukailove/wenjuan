@@ -1,0 +1,115 @@
+
+<!--<div style="width: 900px;height:400px;background-color: #eeeeee">-->
+
+<div class="center jumbotron">
+  <div class="col-sm-12 h2 center"></div>
+  <% (1..5).each do |i| %>
+      <div class="form-group row col-sm-offset-1">
+        <% (((i-1)*5+1)..(i*5)).each do |j| %>
+            <div class="col-sm-1 btn btn-primary col-sm-offset-1 text-center data_fen" data-fen="<%= j %>"> <%= j %>分
+            </div>
+        <% end %>
+      </div>
+  <% end %>
+  <button type="button" id="myButton" data-loading-text="提交..." class="btn btn-primary btn-lg disabled" autocomplete="off">确认</button>
+</div>
+<script>
+    var f;
+    function addheadermsg(header, content) {
+        $('#myModalLabel span').text(header);
+        $('.modal-body span').text(content);
+    }
+    $(function () {
+        $('body').delegate('.data_fen', 'click', function () {
+            var fen = $(this).data('fen');
+//      console.info(fen);
+            $('.data_fen').removeClass('disabled');
+
+            if (!$(this).hasClass('disabled')) {
+                $(this).addClass('disabled');
+                if (fen) {
+                    f = fen;
+                    disable_button(fen);
+                } else {
+                    f = '';
+                }
+                ;
+            }
+            console.info(f);
+        });
+        var $modal_dialog = $('.modal-dialog');
+        var m_top = ( $(window).height() - $modal_dialog.height() ) / 3.5;
+        $modal_dialog.css({'margin': m_top + 'px auto'});
+        $modal = $('#myModal');
+//    if($("#select_type").data('modal')=='0'){
+//      $modal.modal({show: true, backdrop: 'static', keyboard: false});
+        $modal.modal({show: false, backdrop: 'static', keyboard: false});
+//    }
+
+        function disable_button(id) {
+            if (id) {
+                if ($('#myButton').hasClass('disabled')) {
+                    $('#myButton').removeClass('disabled');//去除禁用
+                }
+            } else {
+                if (!$('#myButton').hasClass('disabled')) {
+                    $('#myButton').addClass('disabled');//禁用
+                }
+            }
+        }
+
+        $("#myButton").click(function () {
+            if ($('#myButton').hasClass('disabled')) {
+                alert('请选择答案再提交');
+            } else {
+                if (f) {
+                    $modal.modal('show');
+                    addheadermsg('提交分数', f + '分');
+                    var s = {fen: f, user_id: 12, control_id: 2};//为用户评分记录post数据
+                    /*
+                     结束轮询方法，
+                     成功后刷新页面
+                     * 失败后走失败逻辑
+                     * */
+                    if ('如果未开始') {
+                        addheadermsg('', '等待开始');
+                    } else if ('评分已经结束') {
+                        addheadermsg('', '评分结束');
+                    }
+
+                } else {
+                    alert('请选择答案再提交');
+                }
+            }
+            ;
+        });
+    });
+
+
+</script>
+<% content_for :modal do %>
+    <div class="modal fade" id="myModal" style="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+      <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #286090;">
+          <div class="modal-header" style="border-bottom: 0px">
+            <h2 class="modal-title h1 " id="myModalLabel">
+              <span class="label" style="font-size: 150%;letter-spacing:8px;"></span></h2>
+          </div>
+          <div class="modal-body h1 center ">
+            <span class="label" style="font-size: 150%;"> </span>
+          </div>
+          <div class="modal-footer">
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>
+
+
+<h1>New Score User</h1>
+
+<%= render 'form', score_user: @score_user %>
+
+<%= link_to 'Back', score_users_path %>

@@ -1,0 +1,14 @@
+<div class="center jumbotron table table-responsive">
+
+  <%= form_tag update_all_score_users_path,multipart: true do  %>
+      <% @score_users.each do |item| %>
+          <input type="hidden"  name="score_user_<%= item.id %>[]" value="<%= item.id %>" class="create_input" />
+          <input type="text"  name="score_user_<%= item.id %>[]" value="<%= item.name %>" class="create_input" />
+          <input type="file"  name="score_user_<%= item.id %>[]" class="create_input" />
+
+  <% end %>
+      <div><%= submit_tag 'Save' %></div>
+
+
+<% end %>
+</div>

@@ -1,0 +1,10 @@
+<div class="center jumbotron table table-responsive">
+
+<%= simple_form_for score_user , html: {multipart: true} do |f| %>
+    <%= f.input :name, as: :string %>
+    <%= f.input :avatar, as: :file %>
+    <%= f.input :status, as: :boolean,  input_html: { value: '1' } %>
+    <%= f.input :state, as: :boolean,  input_html: { value: '1' } %>
+    <%= f.button :submit %>
+<% end %>
+    </div>

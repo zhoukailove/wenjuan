@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class StaticPagesController < AdminsController
   before_action :logged_in_user, only: [:home]
   before_action :update_answer, only: [:home]
 

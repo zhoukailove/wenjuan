@@ -1,4 +1,4 @@
-class AnswerCommandsController < ApplicationController
+class AnswerCommandsController < AdminsController
   before_action :set_answer_command, only: [:show, :edit, :update, :destroy]
 
   # GET /answer_commands

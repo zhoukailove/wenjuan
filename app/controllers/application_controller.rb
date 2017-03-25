@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  include SessionsHelper
-  before_action :ipad
+
 
   def admin
     if (['answer_commands', 'answer_records', 'rooms'].include? controller_name) && current_user && current_user.id != User.last.id

@@ -1,0 +1,9 @@
+<%= simple_form_for score_control_center  do |f| %>
+    <%= f.input :begin_time, as: :date %>
+    <%= f.input :end_time, as: :date %>
+    <%= f.input :fraction, as: :integer %>
+    <%= f.input :people_number, as: :integer %>
+    <%= f.input :round_number, as: :integer %>
+    <%= f.input :status, as: :boolean,  input_html: { value: '1' } %>
+    <%= f.button :submit %>
+<% end %>

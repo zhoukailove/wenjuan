@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController
+class SessionsController < AdminsController
   def new
       redirect_to root_path ,layout:false if current_user
   end

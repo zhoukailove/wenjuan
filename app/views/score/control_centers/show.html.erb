@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Begin time:</strong>
+  <%= @score_control_center.begin_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @score_control_center.end_time %>
+</p>
+
+<p>
+  <strong>Fraction:</strong>
+  <%= @score_control_center.fraction %>
+</p>
+
+<p>
+  <strong>People number:</strong>
+  <%= @score_control_center.people_number %>
+</p>
+
+<p>
+  <strong>Round number:</strong>
+  <%= @score_control_center.round_number %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @score_control_center.status %>
+</p>
+
+<%= link_to 'Edit', edit_score_control_center_path(@score_control_center) %> |
+<%= link_to 'Back', score_control_centers_path %>

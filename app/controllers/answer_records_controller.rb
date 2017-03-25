@@ -1,4 +1,4 @@
-class AnswerRecordsController < ApplicationController
+class AnswerRecordsController < AdminsController
   before_action :set_answer_record, only: [:show, :edit, :update, :destroy]
 
 

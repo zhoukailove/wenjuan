@@ -1,0 +1,170 @@
+<div class="center jumbotron">
+  <div class="col-sm-12 h2 center"></div>
+  <% (1..5).each do |i| %>
+      <div class="form-group row col-sm-offset-1">
+        <% (((i-1)*5+1)..(i*5)).each do |j| %>
+            <div class="col-sm-1 btn btn-primary col-sm-offset-1 text-center data_fen" data-fen="<%= j %>"> <%= j %>分
+            </div>
+        <% end %>
+      </div>
+  <% end %>
+  <button type="button" id="myButton" data-loading-text="提交..." class="btn btn-primary btn-lg disabled" autocomplete="off">确认</button>
+</div>
+<% content_for :script do  %>
+    <script>
+        var f;
+        var iCount ;
+        var $modal_dialog = $('.modal-dialog');
+        var m_top = ( $(window).height() - $modal_dialog.height() ) / 3.5;
+        $modal_dialog.css({'margin': m_top + 'px auto'});
+        $modal = $('#myModal');
+        function addheadermsg(header, content) {
+            $('#myModalLabel span').text(header);
+            $('.modal-body span').text(content);
+        }
+        function update_user_record_aaa(data){
+            $.ajax({
+                type:'post',
+                url: '<%= update_user_record_score_records_path %>',
+                data: data,
+                timeout: 5000,
+                success: function (data, textStatus) {
+                    if (textStatus == "success") { // 请求成功
+                        console.info(data);
+                        if(data.redirect_to_url){
+                            location.href = data.redirect_to_url;
+                        }
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $("#state").append("[state: " + textStatus + ", error: " + errorThrown + " ]<br/>");
+                    if (textStatus == "timeout") { // 请求超时
+                        // 其他错误，如网络错误等
+                    } else {
+                    }
+                }
+            });
+
+        };
+
+        function  starAJAX(url,t)
+        {
+            var options = {
+                url: url,
+                data: {control_id: t},
+//                dataType: "text",
+                timeout: 5000,
+                success: function (data, textStatus) {
+                    if (textStatus == "success") { // 请求成功
+                        console.info(data);
+                        if(data.status){
+                            if(data.state){//可以答题
+                                $modal.modal('hide');
+//                                clearInterval(iCount);
+                            }else{
+                                addheadermsg('', data.msg);
+                                $modal.modal('show');
+                            }
+                        }else if(data.redirect_to_url){
+                            location.href = data.redirect_to_url;
+                        }
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    $("#state").append("[state: " + textStatus + ", error: " + errorThrown + " ]<br/>");
+                    if (textStatus == "timeout") { // 请求超时
+                        // 其他错误，如网络错误等
+                    } else {
+                    }
+                }
+            };
+            $.post(options);
+        }
+
+        $(function () {
+            $('body').delegate('.data_fen', 'click', function () {
+                var fen = $(this).data('fen');
+//      console.info(fen);
+                $('.data_fen').removeClass('disabled');
+
+                if (!$(this).hasClass('disabled')) {
+                    $(this).addClass('disabled');
+                    if (fen) {
+                        f = fen;
+                        disable_button(fen);
+                    } else {
+                        f = '';
+                    };
+                }
+                console.info(f);
+            });
+
+//    if($("#select_type").data('modal')=='0'){
+//      $modal.modal({show: true, backdrop: 'static', keyboard: false});
+            $modal.modal({show: false, backdrop: 'static', keyboard: false});
+//    }
+
+            function disable_button(id) {
+                if (id) {
+                    if ($('#myButton').hasClass('disabled')) {
+                        $('#myButton').removeClass('disabled');//去除禁用
+                    }
+                } else {
+                    if (!$('#myButton').hasClass('disabled')) {
+                        $('#myButton').addClass('disabled');//禁用
+                    }
+                }
+            }
+
+            $("#myButton").click(function () {
+                if ($('#myButton').hasClass('disabled')) {
+                    alert('请选择答案再提交');
+                } else {
+                    if (f) {
+//                        $modal.modal('show');
+//                        addheadermsg('提交分数', f + '分');
+                        var data = {fen: f, control_id: <%= @control_id %>};//为用户评分记录post数据
+                        clearInterval(iCount);
+                        update_user_record_aaa(data);
+
+
+                    } else {
+                        alert('请选择答案再提交');
+                    }
+                }
+                ;
+            });
+
+            starAJAX( "/score/users/get_pingfeng_is_begin",<%= @control_id %>);
+            function startaja() {
+                if(iCount){
+                    clearInterval(iCount);
+                }
+                iCount = (setInterval("starAJAX( '/score/users/get_pingfeng_is_begin',<%= @control_id %>)", 3000));
+            }
+
+            startaja();
+        });
+
+    </script>
+
+<% end %>
+<% content_for :modal do %>
+    <div class="modal fade" id="myModal" style="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+      <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #286090;">
+          <div class="modal-header" style="border-bottom: 0px">
+            <h2 class="modal-title h1 " id="myModalLabel">
+              <span class="label" style="font-size: 150%;letter-spacing:8px;"></span></h2>
+          </div>
+          <div class="modal-body h1 center ">
+            <span class="label" style="font-size: 150%;"> </span>
+          </div>
+          <div class="modal-footer">
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

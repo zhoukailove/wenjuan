@@ -1,0 +1,132 @@
+<div class="center jumbotron">
+  <div class="row center 15">
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <div class="btn-group">
+        <% @user.limit(15).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <div class="btn-group ">
+        <% @user.offset(15).limit(15).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row center 13">
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <div class="btn-group" >
+        <% @user.offset(30).limit(13).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
+
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <div class="btn-group">
+        <% @user.offset(43).limit(13).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row center 12">
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <div class="btn-group " >
+        <% @user.offset(56).limit(12).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4">
+      <div class="btn-group">
+        <% @user.offset(68).limit(12).pluck(:id).each do |id| %>
+            <div type="button" class="btn btn-default" id="user_<%= id %>"></div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="cOk" class="btn btn-lg">Cok</div>
+<%= content_for :script do %>
+    <script>
+         //        $('#user_13').removeClass('btn-default').removeClass('btn-success').addClass('btn-danger');
+    </script>
+<% end %>
+
+<%= content_for :style do %>
+    <style>
+
+        /*.container{width: 100%;}*/
+        .col-md-4 {
+            /*min-height: 200%;*/
+
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .align-center {
+            margin-top: 10%;
+        }
+
+        .btn {
+            min-height: 30px;
+            min-width: 32px;
+        }
+
+        .row {
+            /*background-color: #a02fee; !* standard background color *!*/
+            min-height: 50px;
+            margin: auto;
+        }
+
+        .btn-default {
+            background-color: black;
+            /*!* standard background color *!*/
+            /*border: 1px solid #891a21;*/
+            /*text-align: center;*/
+        }
+    </style>
+<% end %>
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Score Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @score_users.each do |score_user| %>
+      <tr>
+        <td><%= score_user.name %></td>
+        <td><%= score_user.status %></td>
+        <td><%= score_user.state %></td>
+        <td><%= link_to 'Show', score_user %></td>
+        <td><%= link_to 'Edit', edit_score_user_path(score_user) %></td>
+        <td><%= link_to 'Destroy', score_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Score User', new_score_user_path %>

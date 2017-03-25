@@ -1,0 +1,41 @@
+<%= form_for(score_record) do |f| %>
+  <% if score_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(score_record.errors.count, "error") %> prohibited this score_record from being saved:</h2>
+
+      <ul>
+      <% score_record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :control_id %>
+    <%= f.number_field :control_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :number %>
+    <%= f.number_field :number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fraction %>
+    <%= f.number_field :fraction %>
+  </div>
+
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.check_box :status %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

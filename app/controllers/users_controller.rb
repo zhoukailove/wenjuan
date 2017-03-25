@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < AdminsController
   before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user  , only: [:show, :new, :destroy, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]

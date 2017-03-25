@@ -1,0 +1,148 @@
+<div class="center jumbotron">
+  <div class="col-sm-12 h2 center"></div>
+  <div class="form-group row col-sm-offset-1">
+    <% @users.each do |user| %>
+        <% if cookies[:user_id] %>
+            <div class="col-sm-1 btn btn-primary disabled col-sm-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.id %>
+              号评委
+            </div>
+        <% elsif user.state %>
+            <div class="col-sm-1 btn btn-primary disabled col-sm-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.id %>
+              号评委
+            </div>
+        <% else %>
+            <div class="col-sm-1 btn btn-primary col-sm-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.id %>
+              号评委
+            </div>
+
+        <% end %>
+    <% end %>
+  </div>
+
+  <button type="button" id="myButton" data-loading-text="提交..." class="btn btn-primary btn-lg disabled" autocomplete="off">确认</button>
+</div>
+
+<style>
+    .data_fen{
+        width: 11%;
+    }
+</style>
+<script>
+    var f;
+    function addheadermsg(header, content) {
+        $('#myModalLabel span').text(header);
+        $('.modal-body span').text(content);
+    }
+    $(function () {
+        $('body').delegate('.data_fen', 'click', function () {
+            var fen = $(this).data('fen');
+//      console.info(fen);
+            $('.data_fen').removeClass('disabled');
+
+            if (!$(this).hasClass('disabled')) {
+                $(this).addClass('disabled');
+                if (fen) {
+                    f = fen;
+                    disable_button(fen);
+                } else {
+                    f = '';
+                }
+                ;
+            }
+            console.info(f);
+        });
+        var $modal_dialog = $('.modal-dialog');
+        var m_top = ( $(window).height() - $modal_dialog.height() ) / 3.5;
+        $modal_dialog.css({'margin': m_top + 'px auto'});
+        $modal = $('#myModal');
+//    if($("#select_type").data('modal')=='0'){
+      $modal.modal({show: true, backdrop: 'static', keyboard: false});
+//        $modal.modal({show: false, backdrop: 'static', keyboard: false});
+//    }
+
+        function disable_button(id) {
+            if (id) {
+                if ($('#myButton').hasClass('disabled')) {
+                    $('#myButton').removeClass('disabled');//去除禁用
+                }
+            } else {
+                if (!$('#myButton').hasClass('disabled')) {
+                    $('#myButton').addClass('disabled');//禁用
+                }
+            }
+        }
+
+        $("#myButton").click(function () {
+            if ($('#myButton').hasClass('disabled')) {
+                alert('请选择后再提交');
+            } else {
+                console.info(f);
+                if (f) {
+//                    $modal.modal('show');
+                    addheadermsg('提交分数', f + '分');
+                    var data = {user_id: f};//为用户评分记录post数据
+                    /*查看用户所选是否已经存在*/
+                    $.ajax({
+                        type: 'post',
+                        url: '<%= get_user_state_score_users_url %>',
+                        data: data,
+                        success: function (data) {
+                            if(data.status){
+                                /*路转至对应用户的评分页面*/
+                                $('[data-fen='+f+']').addClass('disabled');
+                                alert('已经被选择');
+                            }else{
+
+                                location.href='/score/users/'+f+'/select_fen';
+
+                            }
+                        },
+                        error: function (e) {
+                            console.log(e);
+                            console.log('get_user_state_score_users_path error');
+                        }
+                    });
+                    /*
+                     结束轮询方法，
+                     成功后刷新页面
+                     * 失败后走失败逻辑
+                     * */
+//                    if ('如果未开始') {
+//                        addheadermsg('', '等待开始');
+//                    } else if ('评分已经结束') {
+//                        addheadermsg('', '评分结束');
+//                    }
+
+                } else {
+                    alert('请选择后再提交');
+                }
+            }
+            ;
+        });
+    });
+
+
+</script>
+<% content_for :modal do %>
+    <div class="modal fade" id="myModal" style="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+      <div class="modal-dialog">
+        <div class="modal-content" style="background-color: #286090;">
+          <div class="modal-header" style="border-bottom: 0px">
+            <h2 class="modal-title h1 " id="myModalLabel">
+              <span class="label" style="font-size: 150%;letter-spacing:8px;"></span></h2>
+          </div>
+          <div class="modal-body h1 center ">
+            <span class="label" style="font-size: 150%;"><% if @users.present?  %>评分已经结束
+                  <% else %>
+              评分系统未初始化
+                  <% end %>
+                  </span>
+          </div>
+          <div class="modal-footer" style="border-top: 0px">
+            <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

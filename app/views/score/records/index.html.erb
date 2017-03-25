@@ -1,0 +1,134 @@
+<%= link_to '刷新' , score_records_path ,class: 'btn btn-warning btn-lg',target: "_self", rel: "nofollow" %>
+<%= link_to '修改用户头像' , edit_all_score_users_path ,class: 'btn btn-warning btn-lg',target: "_self", rel: "nofollow" %>
+<%= link_to '大屏显示' , show_message_score_records_path ,class: 'btn btn-warning btn-lg',target: "_blank", rel: "nofollow" %>
+<%= link_to '项目初始化' , info_production_score_records_path ,class: 'btn btn-warning btn-lg info_production',target: "_self", rel: "nofollow" %>
+
+<div class="center jumbotron">
+  <div class="row">
+    <div class="col-md-1  btn btn-info disabled">评分轮数 </div>
+    <div class="col-md-2  btn btn-info disabled">操作</div>
+  <% @score_controls[0].score_records.each do |item| %>
+        <div class="col-md-1  btn btn-info disabled"><%= item.score_user.name %></div>
+  <% end %>
+    <div class="col-md-1  btn btn-info disabled">总分</div>
+    </div>
+  <br/>
+
+  <% @score_controls.each do |score_control| %>
+      <div class="row" data-id="<%= score_control.id %>">
+        <div class="col-md-1  btn btn-info disabled">
+          第<%= score_control.id %>轮
+        </div>
+        <div class="col-md-2 ">
+          <div class="btn-group btn-group-justified"  data-id="<%= score_control.id %>" role="group"  >
+          <% if score_control.begin_status %>
+              <div class="btn begin_time btn-warning disabled"> 开始 </div>
+          <% else %>
+              <div class="btn begin_time btn-warning"> 开始 </div>
+          <% end %>
+          <% if !score_control.end_status && score_control.begin_status %>
+              <div class="btn end_time btn-success"> 结束 </div>
+          <% else %>
+              <div class="btn end_time btn-success disabled"><%= score_control.end_status ? '结束' : '结束' %></div>
+          <% end %>
+          </div></div>
+
+
+        <% score_control.score_records.each do |item| %>
+            <div class="col-md-1  btn btn-info disabled">
+              <%= item.number %>
+            </div>
+        <% end %>
+
+            <div class="col-md-1  btn btn-warning disabled">
+              <%= score_control.score_records.pluck(:number).sum %>
+            </div>
+        <!--<div class="col-md-1  btn btn-warning">-->
+          <!--<%#= link_to('大屏显示',record_detail_path(answer_command.answer_id ),target: "_blank", rel: "nofollow") %>-->
+        <!--</div>-->
+      </div>
+      <br/>
+
+  <% end %>
+</div>
+
+<script>
+//    $('.info_production').on('click',function(){
+//        $.ajax({
+//            type: 'post',
+//            url: '<%#= info_production_score_records_path %>',
+//            data: data,
+//            success: function (data) {
+//                alert(data.msg);
+//                location.reload();
+//
+//            },
+//            error: function (e) {
+//                console.log(e);
+//                console.log('update_command_time_path error');
+//            }
+//        });
+//    });
+
+    $('.begin_time').on('click', function () {
+        var end_time_disabled = $(this).parent('.row').children('.end_time').eq(0).hasClass('disabled');
+
+        var disabled = $(this).hasClass('disabled');
+        if (disabled) {
+            if (end_time_disabled) {
+                alert('本轮已经结束');
+            } else {
+                alert('已经开始');
+            }
+        } else {
+
+            var control_id = $(this).parent('.btn-group').data('id');
+            var tt = $(this);
+            update_command_time(control_id, 'begin_time', tt)
+        }
+    });
+
+    $('.end_time').on('click', function () {
+        var disabled = $(this).hasClass('disabled');
+        if (disabled) {
+            var begin_time_disabled = $(this).parent('.row').children('.begin_time').eq(0).hasClass('disabled');
+            if (begin_time_disabled) {
+                alert('本轮已经结束');
+            } else {
+                alert('请先开始本轮');
+            }
+        } else {
+            var control_id = $(this).parent('.btn-group').data('id');
+            var tt = $(this);
+            update_command_time(control_id, 'end_time', tt)
+        }
+    });
+    function update_command_time(id, column_type, tt) {
+        var data = {
+            concle_id: id,
+            column_type: column_type
+        };
+        $.ajax({
+            type: 'post',
+            url: '<%= update_command_time_score_records_path %>',
+            data: data,
+            success: function (data) {
+                if (data.data == 200) {
+                    tt.addClass('disabled');
+                    if (column_type == 'begin_time') {
+//                        tt.html('开始时间:'+data.time);
+                        tt.next('.end_time').removeClass('disabled')
+                    }else{
+//                        tt.html('结束时间:'+data.time);
+                    }
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (e) {
+                console.log(e);
+                console.log('update_command_time_path error');
+            }
+        });
+    }
+</script>
