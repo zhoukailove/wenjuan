@@ -34,6 +34,7 @@ class Score::StaticPagesController < ScoreController
 
   def active_is_over
     users = Score::User.all
+    cookies[:user_id] = false
     @users = users ? users : []
     # logger.info  @users
   end

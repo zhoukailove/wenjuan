@@ -17,16 +17,20 @@ Rails.application.routes.draw do
     end
     resources :records  do
       # 存储评分记录
-      member do
-      end
       collection do
         get 'show_message'
+        get 'info_fen' #初始化项目
         get 'info_production' #初始化项目
         post 'update_command_time' #更改评分状态（开始、结束）
         post 'update_user_record' #记录用户评分记录
       end
     end
-    resources :controls          # 评分控制开关记录
+    resources :controls  do
+      member do
+        get 'show_message'
+      end
+      # 评分控制开关记录
+    end
   end
   # root 'static_pages#home'
   #

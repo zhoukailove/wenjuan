@@ -132,7 +132,9 @@
               <span class="label" style="font-size: 150%;letter-spacing:8px;"></span></h2>
           </div>
           <div class="modal-body h1 center ">
-            <span class="label" style="font-size: 150%;"><% if @users.present?  %>评分已经结束
+            <span class="label" style="font-size: 150%;"><% if @users.present?  %>
+                  评分已经结束<br/>
+                  <%= link_to '点击此处重新开始',score_root_path ,style: 'color:white'%>
                   <% else %>
               评分系统未初始化
                   <% end %>

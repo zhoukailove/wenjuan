@@ -2,11 +2,12 @@
 <%= link_to '修改用户头像' , edit_all_score_users_path ,class: 'btn btn-warning btn-lg',target: "_self", rel: "nofollow" %>
 <%= link_to '大屏显示' , show_message_score_records_path ,class: 'btn btn-warning btn-lg',target: "_blank", rel: "nofollow" %>
 <%= link_to '项目初始化' , info_production_score_records_path ,class: 'btn btn-warning btn-lg info_production',target: "_self", rel: "nofollow" %>
+<%= link_to '结束评分' , info_fen_score_records_path ,class: 'btn btn-warning btn-lg info_production',target: "_self", rel: "nofollow" %>
 
 <div class="center jumbotron">
   <div class="row">
     <div class="col-md-1  btn btn-info disabled">评分轮数 </div>
-    <div class="col-md-2  btn btn-info disabled">操作</div>
+    <div class="col-md-3  btn btn-info disabled">操作</div>
   <% @score_controls[0].score_records.each do |item| %>
         <div class="col-md-1  btn btn-info disabled"><%= item.score_user.name %></div>
   <% end %>
@@ -19,7 +20,7 @@
         <div class="col-md-1  btn btn-info disabled">
           第<%= score_control.id %>轮
         </div>
-        <div class="col-md-2 ">
+        <div class="col-md-3 ">
           <div class="btn-group btn-group-justified"  data-id="<%= score_control.id %>" role="group"  >
           <% if score_control.begin_status %>
               <div class="btn begin_time btn-warning disabled"> 开始 </div>
@@ -27,11 +28,15 @@
               <div class="btn begin_time btn-warning"> 开始 </div>
           <% end %>
           <% if !score_control.end_status && score_control.begin_status %>
-              <div class="btn end_time btn-success"> 结束 </div>
-          <% else %>
-              <div class="btn end_time btn-success disabled"><%= score_control.end_status ? '结束' : '结束' %></div>
+              <div class="btn end_time btn-danger"> 结束 </div>
+                <div class="btn btn-success show_mage"><%= link_to '大屏显示' ,show_message_score_control_path(score_control),target: '_blank'  %></div>
+            <% else %>
+              <div class="btn end_time btn-danger disabled"><%= score_control.end_status ? '结束' : '结束' %></div>
+                <div class="btn btn-success show_mage"><%= link_to '大屏显示' ,show_message_score_control_path(score_control),target: '_blank'  %></div>
           <% end %>
-          </div></div>
+
+          </div>
+        </div>
 
 
         <% score_control.score_records.each do |item| %>

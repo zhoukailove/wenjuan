@@ -74,6 +74,11 @@ class Score::RecordsController < ScoreController
     Score::Control.update_all(status:true,begin_status:false,end_status:false)
     redirect_to score_records_path
   end
+  def info_fen
+    # 删除所有用户的记录信息
+    Score::Control.update_all(status:false,begin_status:true,end_status:true)
+    redirect_to score_records_path
+  end
 
   # 更新用户评分记录
   def update_user_record
