@@ -1,7 +1,7 @@
 <div class="divcss5">
   <img src="<%=asset_path('image_1490703824.935329.jpg')  %>" />
 </div>
-<div class="row"   style="margin: 0px;margin-left: 14% ;padding-top: 1px ">
+<div class="row"   >
   <% @records.each_with_index do |item , index|  %>
       <div class="avatar col-md-2">
         <div class="avatar_desc thumbnail" >
@@ -18,7 +18,7 @@
   <span class="fen text-center">总分数：<span><%= @records.pluck(:number).sum %></span></span>
 </div>
 <br/>
-<div>
+<div class="ti_huan">
   <form class="form-inline">
     <% @records.each_with_index do |item , index|  %>
         <div class="form-group">
