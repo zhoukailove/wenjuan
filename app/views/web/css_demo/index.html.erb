@@ -1,0 +1,22 @@
+<% content_for :style do %>
+    <%= stylesheet_link_tag '/css/css_demo.css' %>
+<% end %>
+
+<input type="text">
+<input type="text">
+<input type="text">
+
+<%= link_to '刷新',web_css_demo_path ,class: 'btn btn-lg btn-primary' %>
+<h1>这是标题h1</h1>
+<h1><strong>这是标题h1</strong></h1>
+<ul>
+  <li><%= link_to '刷新',web_css_demo_path  %></li>
+  <li><%= link_to '刷新',web_css_demo_path  %></li>
+  <li><%= link_to '刷新',web_css_demo_path  %></li>
+  <li>cc</li>
+</ul>
+
+<p>可以把扩展代码放application.rb或者environment.rb或者单独存为一个文件在适当的地方require即可。
+  2.使用</p>
+<p id="banner">一个页面是用了layout/application.rhtml 做layout，现在要这个页面同时也可以做其他页面的layout。
+</p>

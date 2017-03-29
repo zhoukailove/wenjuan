@@ -1,24 +1,26 @@
 <div class="divcss5">
   <img src="<%=asset_path('image_1490703824.935329.jpg')  %>" />
 </div>
-<div class="row">
-  <% @records.each_with_index do |item , index|  %>
-      <div class="avatar col-md-2">
-        <div class="avatar_desc thumbnail" >
-          <img src="<%= item.score_user.avatar.url(:thumb) %>" class="" style="min-width: 130px;height: 150px;"  alt=""/>
-          <div class="caption" style="padding:0px">
-            <span class="text-center" style="display: block;font-size: 150%;">评委:<%= item.score_user ? item.score_user.name : index+1 %></span>
-            <div style="border-bottom: 2px solid #e52233;"></div>
-            <span class="text-center text-center_<%= item.id %>" style="display: block;font-size: 150%;"><%= item.number %></span>
+<div class="row"   >
+  <div  class="ccc clearfix" >
+    <% @records.each_with_index do |item , index|  %>
+        <div class="avatar col-md-2">
+          <div class="avatar_desc thumbnail" >
+            <img src="<%= item.score_user.avatar.url(:thumb) %>" class="" style="height: 150px;"  alt=""/>
+            <div class="caption" style="padding:0px">
+              <span class="text-center" style="display: block;font-size: 150%;">评委:<%= item.score_user ? item.score_user.name : index+1 %></span>
+              <div style="border-bottom: 2px solid #e52233;"></div>
+              <span class="text-center text-center_<%= item.id %>" style="display: block;font-size: 150%;"><%= item.number %></span>
+            </div>
+            <!--<div class="user_name">123123</div>-->
           </div>
-          <!--<div class="user_name">123123</div>-->
         </div>
-      </div>
-  <% end %>
-  <span class="fen text-center">总分数：<span><%= @records.pluck(:number).sum %></span></span>
+    <% end %>
+    <span class="fen text-center">总分数：<span><%= @records.pluck(:number).sum %></span></span>
+  </div>
 </div>
 <br/>
-<div  class="ti_huan">
+<div class="ti_huan">
   <form class="form-inline">
     <% @records.each_with_index do |item , index|  %>
         <div class="form-group">
@@ -29,7 +31,6 @@
 
   </form>
 </div>
-
 <% content_for :script do  %>
     <script src="/js/show_message.js"></script>
 <% end %>
@@ -37,4 +38,3 @@
     <link rel="stylesheet" href="/css/show_message.css"/>
 
 <% end %>
-

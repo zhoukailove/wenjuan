@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :web do
+    get 'css_demo' ,to: 'css_demo#index' ,as: :css_demo
+  end
+
+
+
   namespace :score do
     root 'static_pages#home'
     get 'active_is_over', to:'static_pages#active_is_over' ,as: :active_is_over

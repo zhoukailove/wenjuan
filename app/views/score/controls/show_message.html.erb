@@ -2,10 +2,11 @@
   <img src="<%=asset_path('image_1490703824.935329.jpg')  %>" />
 </div>
 <div class="row"   >
+<div  class="ccc clearfix" >
   <% @records.each_with_index do |item , index|  %>
       <div class="avatar col-md-2">
         <div class="avatar_desc thumbnail" >
-          <img src="<%= item.score_user.avatar.url(:thumb) %>" class="" style="min-width: 130px;height: 150px;"  alt=""/>
+          <img src="<%= item.score_user.avatar.url(:thumb) %>" class="" style="height: 150px;"  alt=""/>
           <div class="caption" style="padding:0px">
             <span class="text-center" style="display: block;font-size: 150%;">评委:<%= item.score_user ? item.score_user.name : index+1 %></span>
             <div style="border-bottom: 2px solid #e52233;"></div>
@@ -16,6 +17,7 @@
       </div>
   <% end %>
   <span class="fen text-center">总分数：<span><%= @records.pluck(:number).sum %></span></span>
+</div>
 </div>
 <br/>
 <div class="ti_huan">

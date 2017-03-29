@@ -3,10 +3,10 @@
 }
 .row{
     position: absolute;
-    width: 60%;
-    margin-left: -32%;
+    width: 100%;
+    /*margin-left: -32%;*/
     margin-top: 15.5%;
-    left: 50%;
+    /*left: 50%;*/
 }
 
 .divcss5{  width:1125px;overflow:hidden;margin:0 auto;position:absolute;background:url(<%=asset_path('image_1490703824.935329.jpg')  %>) no-repeat}
@@ -22,7 +22,7 @@
 }
 
 .col-md-2{
-    width: 23%;
+    width: 18%;
     margin-left:1%;
     margin-right:1%;
     padding: 10px 10px 0px 10px;
@@ -32,4 +32,25 @@
 .ti_huan{
     position: absolute;
     top:-50px;
+}
+.ccc{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+}
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    height: 0;
 }

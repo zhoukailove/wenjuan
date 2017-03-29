@@ -1,0 +1,48 @@
+body{
+    background-image: url('/assets/126bg.jpg');
+}
+h1{
+    font-size:2em;/*文字大小*/
+    font-family:Arial, Sans-Serif;/*文字字体类型*/
+    margin: 0; /*去掉周围的空格*/
+    border-bottom:2px dashed black;/*下面添加一条虚线*/
+}
+p{
+    color: #003366;
+    font-size: .9em;
+    line-height: 150%;
+    margin-top:0;
+    margin-left:25px;
+}
+#banner{
+    background: #cc0000;
+    height: 300px;
+    width: 720px;
+}
+/*改变h1中的strong的文字颜色*/
+h1 strong{
+    color: #cc0000;
+}
+li a{
+    font-family:Arial;
+}
+
+li a:visited{
+    background-color:yellow;
+}
+li:first-child:before{
+    content: 'yellow';
+}
+li:last-child:after{
+    content: 'yellow';
+}
+input:first-child:focus{
+    background: #e53d48;
+    content: 'yellow';
+
+}
+input:last-child{
+    color: #e53d48;
+
+
+}
