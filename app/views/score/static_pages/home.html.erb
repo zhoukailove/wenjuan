@@ -1,29 +1,54 @@
-<div class="center jumbotron">
-  <div class="col-md-12 h2 center"></div>
-  <div class="form-group row col-md-offset-1">
+<div class="center jumbotron" style="padding-left:0">
+  <div class="row">
+    <div class="ccc clearfix">
     <% @users.each do |user| %>
         <% if cookies[:user_id] %>
-            <div class="col-md-1 btn btn-primary disabled col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.id %>
-              号评委
+            <div class="col-md-1 btn btn-primary disabled col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.name %>
+
             </div>
         <% elsif user.state %>
-            <div class="col-md-1 btn btn-primary disabled col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.id %>
-              号评委
+            <div class="col-md-1 btn btn-primary disabled col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.name %>
+
             </div>
         <% else %>
-            <div class="col-md-1 btn btn-primary col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.id %>
-              号评委
+            <div class="col-md-1 btn btn-primary col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.name %>
+
             </div>
 
         <% end %>
     <% end %>
   </div>
+  <!--<br/>-->
+  <!--<br/>-->
 
-  <button type="button" id="myButton" data-loading-text="提交..." class="btn btn-primary btn-lg disabled" autocomplete="off">确认</button>
+  <button type="button" style="margin-top: 5%;" id="myButton" data-loading-text="提交..." class="btn btn-primary btn-lg disabled" autocomplete="off">确认</button>
+</div>
 </div>
 <style>
   .data_fen{
       width: 11%;
+  }
+
+  .ccc{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    -o-align-items: center;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+  }
+  .clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    height: 0;
   }
 </style>
 
