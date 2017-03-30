@@ -1,14 +1,13 @@
 <div class="center jumbotron">
-  <div class="col-sm-12 h2 center"></div>
   <% (1..5).each do |i| %>
-      <div class="form-group row col-sm-offset-1">
+      <div class="form-group row">
         <% (((i-1)*5+1)..(i*5)).each do |j| %>
-            <div class="col-sm-1 btn btn-primary col-sm-offset-1 text-center data_fen" data-fen="<%= j %>"> <%= j %>分
+            <div class="col-lg-1 btn btn-primary btn-lg col-lg-offset-1 text-center data_fen" style="font-size:3em; width: 110px;" data-fen="<%= j %>"> <%= j %>分
             </div>
         <% end %>
       </div>
   <% end %>
-  <button type="button" id="myButton" data-loading-text="提交..." class="btn btn-primary btn-lg disabled" autocomplete="off">确认</button>
+  <button type="button" id="myButton" data-loading-text="提交..." class="btn btn-danger btn-lg disabled" style="font-size:3em; width: 110px;" autocomplete="off">确认</button>
 </div>
 <% content_for :script do  %>
     <script>
