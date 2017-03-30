@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :web do
     get 'css_demo' ,to: 'css_demo#index' ,as: :css_demo
+    get 'css3_demo' ,to: 'css_demo#css3' ,as: :css3
   end
 
 
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
         get 'show_message'
         get 'info_fen' #初始化项目
         get 'info_production' #初始化项目
+        get 'update_fen' #得到指定轮的分数
         post 'update_command_time' #更改评分状态（开始、结束）
         post 'update_user_record' #记录用户评分记录
       end

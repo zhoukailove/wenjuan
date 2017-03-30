@@ -53,6 +53,25 @@ class Score::RecordsController < ScoreController
       end
     end
   end
+  def update_fen
+    control_id = params[:control_id]
+    score_records = Score::Control.find_by_id(control_id).try(:score_records)
+    state = 500
+    data = []
+    msg = '未知错误'
+    if score_records.present?
+      data = score_records.pluck(:id,:number)
+      state = 200
+      msg = '更新完成' if data.present?
+    end
+
+    info = {state: state,data:data, msg: msg}
+    respond_to do |format|
+      format.json do
+        render json: info.to_json
+      end
+    end
+  end
 
   # GET /score/records/1
   # GET /score/records/1.json

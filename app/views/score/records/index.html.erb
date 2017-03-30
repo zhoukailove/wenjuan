@@ -7,7 +7,7 @@
 <div class="center jumbotron">
   <div class="row">
     <div class="col-md-1  btn btn-info disabled">评分轮数 </div>
-    <div class="col-md-3  btn btn-info disabled">操作</div>
+    <div class="col-md-4  btn btn-info disabled">操作</div>
   <% @score_controls[0].score_records.each do |item| %>
         <div class="col-md-1  btn btn-info disabled"><%= item.score_user.name %></div>
   <% end %>
@@ -20,7 +20,7 @@
         <div class="col-md-1  btn btn-info disabled">
           第<%= score_control.id %>轮
         </div>
-        <div class="col-md-3 ">
+        <div class="col-md-4 ">
           <div class="btn-group btn-group-justified"  data-id="<%= score_control.id %>" role="group"  >
           <% if score_control.begin_status %>
               <div class="btn begin_time btn-warning disabled"> 开始 </div>
@@ -34,18 +34,19 @@
               <div class="btn end_time btn-danger disabled"><%= score_control.end_status ? '结束' : '结束' %></div>
                 <div class="btn btn-success show_mage"><%= link_to '大屏显示' ,show_message_score_control_path(score_control),target: '_blank'  %></div>
           <% end %>
+            <div class="btn btn-success update_fen" data-id="<%= score_control.id %>">更新分数</div>
 
           </div>
         </div>
 
 
         <% score_control.score_records.each do |item| %>
-            <div class="col-md-1  btn btn-info disabled">
+            <div class="col-md-1  btn btn-info disabled score_records" data-id="<%= item.id %>">
               <%= item.number %>
             </div>
         <% end %>
 
-            <div class="col-md-1  btn btn-warning disabled">
+            <div class="col-md-1  btn btn-warning disabled total_record " data-id="<%= score_control.id %>">
               <%= score_control.score_records.pluck(:number).sum %>
             </div>
         <!--<div class="col-md-1  btn btn-warning">-->
@@ -74,6 +75,37 @@
 //            }
 //        });
 //    });
+
+    $('.update_fen').on('click', function () {
+        var control_id = $(this).data('id');
+      var data = {
+        control_id: control_id
+      };
+      $.ajax({
+        type: 'get',
+        url: '<%= update_fen_score_records_path %>',
+        data: data,
+        success: function (data) {
+          if (data.state == 200) {
+              if(data.data){
+                var total = 0;
+                $.each( data.data, function(issss, value){
+                  $('.score_records[data-id='+value[0]+']').text(value[1]).css("color","red");
+                  total += value[1];
+                });
+                $('.total_record[data-id='+control_id+']').text(total).css("color","red");
+                alert(data.msg);
+              }
+          } else {
+            alert(data.msg);
+          }
+        },
+        error: function (e) {
+          console.log(e);
+          console.log('update_command_time_path error');
+        }
+      });
+    });
 
     $('.begin_time').on('click', function () {
         var end_time_disabled = $(this).parent('.row').children('.end_time').eq(0).hasClass('disabled');
