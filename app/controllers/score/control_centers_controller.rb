@@ -71,7 +71,7 @@ class Score::ControlCentersController < ScoreController
             puts "user报错信息:#{e}"
           end
         end
-        format.html { redirect_to @score_control_center, notice: 'Control center was successfully created.' }
+        format.html { redirect_to score_records_path, notice: 'Control center was successfully created.' }
         format.json { render :show, status: :created, location: @score_control_center }
       else
         format.html { render :new }
@@ -85,7 +85,7 @@ class Score::ControlCentersController < ScoreController
   def update
     respond_to do |format|
       if @score_control_center.update(score_control_center_params)
-        format.html { redirect_to @score_control_center, notice: 'Control center was successfully updated.' }
+        format.html { redirect_to score_records_path, notice: 'Control center was successfully updated.' }
         format.json { render :show, status: :ok, location: @score_control_center }
       else
         format.html { render :edit }
@@ -112,6 +112,6 @@ class Score::ControlCentersController < ScoreController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def score_control_center_params
-      params.require(:score_control_center).permit(:begin_time, :end_time, :fraction, :people_number, :round_number, :status)
+      params.require(:score_control_center).permit(:begin_time, :end_time, :avatar, :fraction, :people_number, :round_number, :status)
     end
 end

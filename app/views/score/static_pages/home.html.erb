@@ -3,15 +3,15 @@
     <div class="ccc clearfix">
     <% @users.each do |user| %>
         <% if cookies[:user_id] %>
-            <div class="col-md-1 btn btn-primary disabled col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.name %>
+            <div class="col-md-1 btn btn-primary btn-lg disabled col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.name %>
 
             </div>
         <% elsif user.state %>
-            <div class="col-md-1 btn btn-primary disabled col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.name %>
+            <div class="col-md-1 btn btn-primary  btn-lg disabled col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.name %>
 
             </div>
         <% else %>
-            <div class="col-md-1 btn btn-primary col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.name %>
+            <div class="col-md-1 btn btn-primary  btn-lg col-md-offset-1 text-center data_fen" data-fen="<%= user.id %>"> <%= user.name %>
 
             </div>
 

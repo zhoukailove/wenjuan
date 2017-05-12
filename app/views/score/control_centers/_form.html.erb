@@ -1,6 +1,7 @@
-<%= simple_form_for score_control_center  do |f| %>
+<%= simple_form_for score_control_center ,html: {multipart: true}  do |f| %>
     <%= f.input :begin_time, as: :date %>
     <%= f.input :end_time, as: :date %>
+    <%= f.input :avatar, as: :file %>
     <%= f.input :fraction, as: :integer %>
     <%= f.input :people_number, as: :integer %>
     <%= f.input :round_number, as: :integer %>

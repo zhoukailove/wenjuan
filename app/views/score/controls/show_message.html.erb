@@ -1,5 +1,6 @@
 <div class="divcss5">
-  <img src="<%=asset_path('image_1490703824.935329.jpg')  %>" />
+  <!--<img src="<%#=asset_path(@control_center.avatar.url(:or))  %>" />-->
+  <%= image_tag @control_center.avatar.url %>
 </div>
 <div class="row"   >
 <div  class="ccc clearfix" >

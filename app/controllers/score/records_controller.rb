@@ -4,6 +4,7 @@ class Score::RecordsController < ScoreController
   # GET /score/records
   # GET /score/records.json
   def index
+    @sccid = Score::ControlCenter.last.try(:id)
     @score_controls = Score::Control.all
   end
 
@@ -80,6 +81,7 @@ class Score::RecordsController < ScoreController
 
   # 大屏显示页面
   def show_message
+    @control_center = Score::ControlCenter.first
     control_id = Score::Control.where('status = ?',false).last.try(:id)
     @records = []
     @records = Score::Record.where('control_id = ?',control_id) if control_id
