@@ -1,8 +1,9 @@
-<div class="center jumbotron">
+<div class="center ">
   <% (1..5).each do |i| %>
       <div class="form-group row">
         <% (((i-1)*5+1)..(i*5)).each do |j| %>
-            <div class="col-lg-1 btn btn-primary btn-lg col-lg-offset-1 text-center data_fen" style="font-size:3em; width: 110px;" data-fen="<%= j %>"> <%= j %>分
+            <div class="col-lg-1 btn btn-primary btn-lg col-lg-offset-1 text-center data_fen"
+                 style="font-size:3em; width: 110px; margin-left: 25px " data-fen="<%= j %>"> <%= j %>分
             </div>
         <% end %>
       </div>
